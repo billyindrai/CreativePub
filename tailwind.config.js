@@ -8,7 +8,12 @@ module.exports = {
     fontFamily: {
       'sans':['Barlow']
     },
-    extend: {},
+    extend: {
+      colors: {
+        'background':'#262626',
+        'register_orange' : '#FF8A00'
+      },
+    },
   },
   plugins: [],
 }
