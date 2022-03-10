@@ -11,7 +11,8 @@ module.exports = {
     extend: {
       colors: {
         'background':'#262626',
-        'register_orange' : '#FF8A00'
+        'register_orange' : '#FF8A00',
+        'cream_line' : '#FFF3CD'
       },
     },
   },
