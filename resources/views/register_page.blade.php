@@ -24,11 +24,11 @@
                 <div class="container md:flex mt-9">
                     <ul>
                         <li class="text-white text-xl font-light">name</li>
-                        <input class=" bg-white rounded-lg w-60 h-10 mt-0.5" type="text">
+                        <input class=" bg-white rounded-lg w-52 h-10 mt-0.5" type="text">
                     </ul>
                     <ul class="ml-5">
                         <li class="text-white text-xl font-light">username</li>
-                        <input class=" bg-white rounded-lg w-10 h-10 mt-0.5" type="text">
+                        <input class=" bg-white rounded-lg w-fit h-10 mt-0.5" type="text">
                     </ul>
                 </div>
                 <div class="container mt-3">
