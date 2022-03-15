@@ -21,7 +21,7 @@
             }
         </style> -->
     </head>
-    <body class="antialiased">
+    <body class=" antialiased">
         <header class=" bg-zinc-800">
             <nav class=" container flex items-center bg-zinc-800 py-9 mx-auto">
                 <div class=" w-52 ml-5 py-1">
@@ -41,8 +41,8 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-6 container-2xl md:flex pl-20 items-start bg-zinc-800 mx-auto pt-5">
-            <div class="col-span-3 w-64 container bg-white opacity-80 rounded-lg shadow-lg p-4">
+        <div class=" grid grid-cols-6 container-2xl md:flex pl-20 items-start bg-zinc-800 mx-auto pt-5">
+            <div class="absolute top-72 float-left col-span-3 w-64 container bg-white opacity-90 rounded-lg shadow-lg p-4">
                 <div class="container md:flex flex-1 justify-center pt-3 items-center">
                     <img class="rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                 </div>
@@ -78,7 +78,7 @@
                     <p class="text-xs font-sans font-light">Be Better for the Future</p>
                 </div>
             </div>
-            <div class="pl-20">
+            <div class="pl-80">
                 <ul class="hidden md:flex flex-1 justify-start items-start gap-7 text-gray-50 text-base mr-5 font-sans border-2 border-b-white border-t-transparent border-r-transparent border-l-transparent pb-2">
                     <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
                     <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Favorites</button>
