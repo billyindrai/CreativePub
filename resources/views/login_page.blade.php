@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
+    <!-- <style>
         * {
             border: 1px solid white;
         }
-    </style>
+    </style> -->
 </head>
 
 <body class="antialiased bg-background">
@@ -79,7 +79,7 @@
             </ul>
         </div>
     </div>
-    <div class="relative md:flex justify-end mr-6">
+    <div class="md:flex justify-end mr-6">
         <img class="absolute bottom-4 object-cover w-1/5 h-auto" src="{{ asset('images/logo_cpub.png') }}"></img>
     </div>
 </body>
