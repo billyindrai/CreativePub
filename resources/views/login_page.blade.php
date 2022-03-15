@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <style>
+    <style>
         * {
             border: 1px solid white;
         }
-    </style> -->
+    </style>
 </head>
 
 <body class="antialiased bg-background">
