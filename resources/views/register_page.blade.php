@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Register</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <style>
+    <style>
         * {
             border: 1px solid white;
         }
-    </style> -->
+    </style>
 </head>
 
 <body class="antialiased bg-background">
@@ -20,24 +20,43 @@
         </div>
         <div class="container md:flex flex-1 justify-center mt-28 ml-6">
             <ul class="mr-12  ">
-                <li class="text-white text-6xl font-bold text-center">Log in</li>
-                <div class="container mt-12">
-                    <li class="text-white text-xl font-light">email or phone number</li>
+                <li class="text-white text-6xl font-bold text-center">Create Account</li>
+                <div class="container md:flex mt-12">
+                    <ul>
+                        <li class="text-white text-xl font-light">name</li>
+                        <input class=" bg-white rounded-lg w-60 h-10 mt-0.5" type="text">
+                    </ul>
+                    <ul class="ml-5">
+                        <li class="text-white text-xl font-light">username</li>
+                        <input class=" bg-white rounded-lg w-max h-10 mt-0.5" type="text">
+                    </ul>
+                </div>
+                <div class="container mt-3">
+                    <li class="text-white text-xl font-light">email</li>
                     <input class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="email">
                 </div>
-                <div class="container mt-6">
+                <div class="container mt-3">
                     <li class="text-white text-xl font-light">password</li>
                     <input class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="password">
                 </div>
-                <div class="container mt-6">
-                    <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Login</button>
+                <div class="container md:flex mt-3">
+                    <ul>
+                        <input type="checkbox" class="default:ring-2">
+                    </ul>
+                    <ul>
+                        <li class="text-white text-lg font-light">Creating an account means you’re okay with our Terms of
+                            Service, Privacy Policy, and our default Notification Settings.</li>
+                    </ul>
                 </div>
-                <div class="relative flex mt-6 items-center">
+                <div class="container mt-3">
+                    <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Create Account</button>
+                </div>
+                <div class="relative flex mt-3 items-center">
                     <div class="flex-grow border-t border-cream_line"></div>
-                    <span class="flex-shrink mx-4 text-white text-sm font-extralight"> or login with</span>
+                    <span class="flex-shrink mx-4 text-white text-sm font-extralight"> or create with</span>
                     <div class="flex-grow border-t border-cream_line"></div>
                 </div>
-                <div class="container mt-7">
+                <div class="container mt-4">
                     <ul class="md:flex flex-1 justify-center">
                         <button class="bg-white rounded-lg w-10 h-10 mr-3">
                             <svg class="m-auto" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -63,18 +82,13 @@
                         </button>
                     </ul>
                 </div>
-                <div class="container mt-6">
-                    <a class="flex justify-center" href="/forgot_password">
-                        <li class="text-register_orange font-semibold text-sm cursor-pointer hover:underline">Forgot email or password</li>
-                    </a>
-                </div>
             </ul>
         </div>
         <div>
             <ul class="container text-base  mt-6 mr-6 ">
-                <a class="flex" href="/register">
-                    <li class="text-white">Not a Member?</li>
-                    <li class="text-register_orange cursor-pointer hover:underline ml-0.5">Register Now</li>
+                <a class="flex" href="/login">
+                    <li class="text-white">Already a Member?</li>
+                    <li class="text-register_orange cursor-pointer hover:underline ml-0.5">Login Now</li>
                 </a>
             </ul>
         </div>
