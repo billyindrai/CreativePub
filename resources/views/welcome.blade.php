@@ -44,10 +44,10 @@
             <img class="" src="https://cdn.discordapp.com/attachments/711190437922209833/946664774991753256/unknown.png" alt="">
         </div>
     </div>
-    </div>
-</body>
+    
 
-</html>
+
+
         <div class=" container-2xl md:flex justify-center items-center bg-zinc-800 mx-auto">
             <div class="items-center mt-9 mb-3 md:flex justify-center">
                 <input class=" placeholder:text-white bg-zinc-400 rounded-md text-white py-1 px-2 w-64 shadow-md" type="text" placeholder="Search...">
