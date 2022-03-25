@@ -29,6 +29,15 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+Route::get('/upload_galery', function () {
+    return view('upload_galery_page');
+});
+
+Route::get('/upload_collection', function () {
+    return view('upload_collection_page');
+});
+
+
 Route::get('/jobs', function () {
     return view('jobs');
 });
