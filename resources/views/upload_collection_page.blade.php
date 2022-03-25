@@ -176,7 +176,7 @@
                             <input type="checkbox" class="default:ring-2">
                         </ul>
                         <ul>
-                            <p class="text-white text-base font-bold">Premium</p>
+                            <p class="text-white text-base font-thin">Premium</p>
                         </ul>
                     </div>
                 </div>
