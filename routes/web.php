@@ -37,12 +37,20 @@ Route::get('/upload_collection', function () {
     return view('upload_collection_page');
 });
 
+<<<<<<< Updated upstream
 Route::get('/upload_job', function () {
     return view('upload_job_page');
 });
 
 
 
+=======
+>>>>>>> Stashed changes
 Route::get('/jobs', function () {
     return view('jobs');
 });
+
+Route::get('/job_details', function () {
+    return view('job_details');
+});
+

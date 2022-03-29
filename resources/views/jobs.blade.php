@@ -20,6 +20,8 @@
             <li class="cursor-pointer hover:text-orange-500">Next</li>
         </ul>
     </div>
+
+    @for ($i = 0; $i <= 4; $i++)
     <div class="container-2xl md:flex flex-1 mx-48 px-10 border border-amber-200">
         <div class="container-2xl md:flex flex-1 ">
             <div class="container-2xl w-8/12">
@@ -40,7 +42,7 @@
                 </div>
                 <div class="container-2xl md:flex flex-1 mt-20 mb-4 justify-end">
                     <div class="container-2xl">
-                        <p class="font-sans text-sm font-light text-white">Send before <strong class="font-sans text-sm font-bold text-white"> Aug, 17 2022</strong> </p>
+                        <p class="font-sans text-sm font-f text-white">Send before <strong class="font-sans text-sm font-bold text-white"> Aug, 17 2022</strong> </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
                             <button class="bg-teal-700 font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium"> Get Job </button>
                         </div>
@@ -49,5 +51,6 @@
             </div>
         </div>
     </div>
+    @endfor
 </div>
 @endsection

@@ -30,7 +30,7 @@
                 <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-gray-50 text-base mr-5 font-sans">
                     <li class="cursor-pointer hover:text-orange-500">Home</li>
                     <li class="cursor-pointer hover:text-orange-500">Jobs</li>
-                    <img class="rounded-full float-left w-10 h-10" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
+                    <img class="rounded-full object-cover float-left w-10 h-10" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                     <button class=" bg-orange-500 hover:bg-orange-700 text-white rounded-md p-2 font-sans">Upload</button>
                 </ul>
             </nav>

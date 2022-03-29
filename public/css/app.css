@@ -857,9 +857,39 @@ input:checked + .toggle-bg {
   margin-top: 7rem;
   margin-bottom: 7rem;
 }
+<<<<<<< Updated upstream
 .mr-5 {
   margin-right: 1.25rem;
 }
+=======
+.mx-24 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+.mr-5 {
+  margin-right: 1.25rem;
+}
+>>>>>>> Stashed changes
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -974,6 +1004,7 @@ input:checked + .toggle-bg {
 .mb-3 {
   margin-bottom: 0.75rem;
 }
+<<<<<<< Updated upstream
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -988,6 +1019,13 @@ input:checked + .toggle-bg {
 }
 .inline {
   display: inline;
+=======
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+>>>>>>> Stashed changes
 }
 .flex {
   display: flex;
@@ -1113,11 +1151,34 @@ input:checked + .toggle-bg {
 .w-16 {
   width: 4rem;
 }
+<<<<<<< Updated upstream
 .w-1\/2 {
   width: 50%;
 }
 .w-4 {
   width: 1rem;
+=======
+.w-2\/12 {
+  width: 16.666667%;
+}
+.w-6\/12 {
+  width: 50%;
+}
+.w-10\/12 {
+  width: 83.333333%;
+}
+.w-9\/12 {
+  width: 75%;
+}
+.w-3\/12 {
+  width: 25%;
+}
+.w-7\/12 {
+  width: 58.333333%;
+}
+.w-20 {
+  width: 5rem;
+>>>>>>> Stashed changes
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -1177,17 +1238,17 @@ input:checked + .toggle-bg {
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+<<<<<<< Updated upstream
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
+=======
+>>>>>>> Stashed changes
 .items-start {
   align-items: flex-start;
-}
-.items-end {
-  align-items: flex-end;
 }
 .items-center {
   align-items: center;
@@ -1201,9 +1262,12 @@ input:checked + .toggle-bg {
 .justify-center {
   justify-content: center;
 }
+<<<<<<< Updated upstream
 .justify-between {
   justify-content: space-between;
 }
+=======
+>>>>>>> Stashed changes
 .gap-7 {
   gap: 1.75rem;
 }
@@ -1221,33 +1285,43 @@ input:checked + .toggle-bg {
   margin-right: calc(3rem * var(--tw-space-x-reverse));
   margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
+<<<<<<< Updated upstream
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+=======
+>>>>>>> Stashed changes
 .overflow-hidden {
   overflow: hidden;
 }
 .rounded {
   border-radius: 0.25rem;
+<<<<<<< Updated upstream
 }
 .rounded-md {
   border-radius: 0.375rem;
 }
 .rounded-full {
   border-radius: 9999px;
+=======
+>>>>>>> Stashed changes
 }
 .rounded-lg {
   border-radius: 0.5rem;
 }
+<<<<<<< Updated upstream
 .rounded-t-md {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
+=======
+.rounded-full {
+  border-radius: 9999px;
+>>>>>>> Stashed changes
 }
-.rounded-b-md {
-  border-bottom-right-radius: 0.375rem;
-  border-bottom-left-radius: 0.375rem;
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 .rounded-l-lg {
   border-top-left-radius: 0.5rem;
@@ -1256,6 +1330,10 @@ input:checked + .toggle-bg {
 .rounded-r-lg {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+}
+.rounded-b-md {
+  border-bottom-right-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
 }
 .border {
   border-width: 1px;
@@ -1268,6 +1346,9 @@ input:checked + .toggle-bg {
 }
 .border-t {
   border-top-width: 1px;
+}
+.border-b {
+  border-bottom-width: 1px;
 }
 .border-solid {
   border-style: solid;
@@ -1299,11 +1380,15 @@ input:checked + .toggle-bg {
   --tw-border-opacity: 1;
   border-color: rgb(26 86 219 / var(--tw-border-opacity));
 }
+<<<<<<< Updated upstream
 .border-blue-600 {
   --tw-border-opacity: 1;
   border-color: rgb(28 100 242 / var(--tw-border-opacity));
 }
 .border-gray-100 {
+=======
+.border-white {
+>>>>>>> Stashed changes
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
@@ -1334,7 +1419,11 @@ input:checked + .toggle-bg {
 }
 .bg-orange-500 {
   --tw-bg-opacity: 1;
+<<<<<<< Updated upstream
   background-color: rgb(255 90 31 / var(--tw-bg-opacity));
+=======
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+>>>>>>> Stashed changes
 }
 .bg-zinc-400 {
   --tw-bg-opacity: 1;
@@ -1346,7 +1435,11 @@ input:checked + .toggle-bg {
 }
 .bg-teal-700 {
   --tw-bg-opacity: 1;
+<<<<<<< Updated upstream
   background-color: rgb(3 102 114 / var(--tw-bg-opacity));
+=======
+  background-color: rgb(15 118 110 / var(--tw-bg-opacity));
+>>>>>>> Stashed changes
 }
 .bg-background {
   --tw-bg-opacity: 1;
@@ -1383,6 +1476,7 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
+<<<<<<< Updated upstream
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1401,6 +1495,8 @@ input:checked + .toggle-bg {
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
+=======
+>>>>>>> Stashed changes
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1417,6 +1513,7 @@ input:checked + .toggle-bg {
 .p-4 {
   padding: 1rem;
 }
+<<<<<<< Updated upstream
 .p-2\.5 {
   padding: 0.625rem;
 }
@@ -1424,6 +1521,12 @@ input:checked + .toggle-bg {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
+=======
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+>>>>>>> Stashed changes
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1480,10 +1583,13 @@ input:checked + .toggle-bg {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+<<<<<<< Updated upstream
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
+=======
+>>>>>>> Stashed changes
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1505,6 +1611,7 @@ input:checked + .toggle-bg {
 .pr-5 {
   padding-right: 1.25rem;
 }
+<<<<<<< Updated upstream
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -1513,6 +1620,13 @@ input:checked + .toggle-bg {
 }
 .pt-2 {
   padding-top: 0.5rem;
+=======
+.pt-1 {
+  padding-top: 0.25rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+>>>>>>> Stashed changes
 }
 .text-center {
   text-align: center;
@@ -1575,12 +1689,15 @@ input:checked + .toggle-bg {
 .leading-4 {
   line-height: 1rem;
 }
+<<<<<<< Updated upstream
 .leading-6 {
   line-height: 1.5rem;
 }
 .leading-9 {
   line-height: 2.25rem;
 }
+=======
+>>>>>>> Stashed changes
 .text-gray-50 {
   --tw-text-opacity: 1;
   color: rgb(249 250 251 / var(--tw-text-opacity));
@@ -1595,7 +1712,11 @@ input:checked + .toggle-bg {
 }
 .text-orange-500 {
   --tw-text-opacity: 1;
+<<<<<<< Updated upstream
   color: rgb(255 90 31 / var(--tw-text-opacity));
+=======
+  color: rgb(249 115 22 / var(--tw-text-opacity));
+>>>>>>> Stashed changes
 }
 .text-register_orange {
   --tw-text-opacity: 1;
@@ -1633,10 +1754,13 @@ input:checked + .toggle-bg {
   --tw-text-opacity: 1;
   color: rgb(254 243 199 / var(--tw-text-opacity));
 }
+<<<<<<< Updated upstream
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
 }
+=======
+>>>>>>> Stashed changes
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1651,12 +1775,15 @@ input:checked + .toggle-bg {
 .opacity-80 {
   opacity: 0.8;
 }
+<<<<<<< Updated upstream
 .opacity-0 {
   opacity: 0;
 }
 .opacity-100 {
   opacity: 1;
 }
+=======
+>>>>>>> Stashed changes
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -1672,6 +1799,7 @@ input:checked + .toggle-bg {
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+<<<<<<< Updated upstream
 .outline {
   outline-style: solid;
 }
@@ -1702,6 +1830,8 @@ input:checked + .toggle-bg {
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
+=======
+>>>>>>> Stashed changes
 .placeholder\:text-white::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
