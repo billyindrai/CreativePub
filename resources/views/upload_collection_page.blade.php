@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upload Page</title>
+    <title>Upload Collection</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- <style>
         * {
@@ -176,7 +176,7 @@
                             <input type="checkbox" class="default:ring-2">
                         </ul>
                         <ul>
-                            <p class="text-white text-base font-thin">Premium</p>
+                            <p class="text-white text-base font-bold">Premium</p>
                         </ul>
                     </div>
                 </div>

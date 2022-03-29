@@ -37,6 +37,11 @@ Route::get('/upload_collection', function () {
     return view('upload_collection_page');
 });
 
+Route::get('/upload_job', function () {
+    return view('upload_job_page');
+});
+
+
 
 Route::get('/jobs', function () {
     return view('jobs');

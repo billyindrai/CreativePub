@@ -4,13 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upload Galery</title>
+    <title>Upload Job</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <style>
+    <!-- <script src="../path/to/flowbite/dist/flowbite.js"></script>
+    <script src="../path/to/flowbite/dist/datepicker.js"></script> -->
+    <script src="https://unpkg.com/flowbite@1.4.1/dist/datepicker.js"></script>
+    <style>
         * {
             border: 1px solid white;
         }
-    </style> -->
+    </style>
 </head>
 
 <body class="antialiased bg-background font-sans">
@@ -26,50 +29,12 @@
             </ul>
         </nav>
     </header>
-    <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">WHAT ARE YOU WORKING ON?</p>
-    <div class="container md:flex grid grid-cols-2 px-32">
-        <div class="border-dashed border-2 w-screen h-80 border-white rounded-md flex items-center mt-6">
+
+    <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">RECRUIT CREATOR YOU NEEDED</p>
+    <div class="container md:flex justify-center">
+        <div class="container w-fit">
             <div class="container">
-                <p class="text-white text-center font-medium text-xl mb-9">Upload your content</p>
-                <div class="container md:flex justify-center">
-                    <div class="container w-max mr-9">
-                        <button class="border-solid border w-16 h-16 border-white rounded-full">
-                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                                <path d="M30 26.6667V3.33333C30 1.5 28.5 0 26.6667 0H3.33333C1.5 0 0 1.5 0 3.33333V26.6667C0 28.5 1.5 30 3.33333 30H26.6667C28.5 30 30 28.5 30 26.6667ZM9.16667 17.5L13.3333 22.5167L19.1667 15L26.6667 25H3.33333L9.16667 17.5Z" fill="#FF8A00" />
-                            </svg>
-                        </button>
-                        <p class="text-white font-light text-base text-center">Image</p>
-                    </div>
-                    <div class="container w-max mr-9">
-                        <button class="border-solid border w-16 h-16 border-white rounded-full">
-                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="38" height="30" viewBox="0 0 38 30" fill="none">
-                                <path d="M33.9994 0H3.99935C2.14935 0 0.666016 1.48333 0.666016 3.33333V23.3333C0.666016 25.1667 2.14935 26.6667 3.99935 26.6667H12.3327V30H25.666V26.6667H33.9994C35.8327 26.6667 37.316 25.1667 37.316 23.3333L37.3327 3.33333C37.3327 1.48333 35.8327 0 33.9994 0ZM33.9994 23.3333H3.99935V3.33333H33.9994V23.3333ZM25.666 13.3333L13.9993 20V6.66667L25.666 13.3333Z" fill="#FF8A00" />
-                            </svg>
-                        </button>
-                        <p class="text-white font-light text-base text-center">Video</p>
-                    </div>
-                    <div class="container w-max mr-9">
-                        <button class="border-solid border w-16 h-16 border-white rounded-full">
-                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 30" fill="none">
-                                <path d="M10 0V17.5833C9.01667 17.0167 7.88333 16.6667 6.66667 16.6667C2.98333 16.6667 0 19.65 0 23.3333C0 27.0167 2.98333 30 6.66667 30C10.35 30 13.3333 27.0167 13.3333 23.3333V6.66667H20V0H10Z" fill="#FF8A00" />
-                            </svg>
-                        </button>
-                        <p class="text-white font-light text-base text-center">Audio</p>
-                    </div>
-                    <div class="container w-max">
-                        <button class="border-solid border w-16 h-16 border-white rounded-full">
-                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
-                                <path d="M0.333984 22.3332V25.6665H23.6673V22.3332H0.333984ZM7.83399 15.3332H16.1673L17.6673 18.9998H21.1673L13.2507 0.666504H10.7507L2.83398 18.9998H6.33399L7.83399 15.3332ZM12.0007 3.9665L15.1173 12.3332H8.88399L12.0007 3.9665Z" fill="#FF8A00" />
-                            </svg>
-                        </button>
-                        <p class="text-white font-light text-base text-center">Script</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container ml-36">
-            <div class="container">
-                <p class="text-white text-xl font-semibold ">Project Tittle</p>
+                <p class="text-white text-xl font-semibold ">Job Tittle</p>
                 <input class=" bg-white rounded-lg w-80 h-10 mt-2" type="text">
             </div>
             <div class="container mt-4">
@@ -157,12 +122,23 @@
                 </select>
             </div>
             <div class="container mt-4">
-                <p class="text-white text-xl font-semibold ">Description Projects</p>
+                <p class="text-white text-xl font-semibold ">Description Job</p>
                 <textarea id="description" name="description" class="bg-white rounded-lg w-80 h-32 mt-2"></textarea>
             </div>
             <div class="container mt-4">
-                <p class="text-white text-xl font-semibold ">Project Tags</p>
+                <p class="text-white text-xl font-semibold ">Job Tags</p>
                 <input class=" bg-white rounded-lg w-80 h-16 mt-2" type="text">
+            </div>
+            <div class="container mt-4">
+                <p class="text-white text-xl font-semibold ">Due Date</p>
+                <div class="relative">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-register_orange dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <input datepicker datepicker-title="Due Date Job" datepicker-buttons type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Select date">
+                </div>
             </div>
         </div>
     </div>
@@ -170,6 +146,7 @@
         <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium mr-32">Save as Draft</button>
         <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Publish Now</button>
     </div>
+
 </body>
 
 </html>
