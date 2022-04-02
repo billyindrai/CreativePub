@@ -15,7 +15,15 @@ module.exports = {
         'register_orange' : '#FF8A00',
         'cream_line' : '#FFF3CD',
         'bg_calendar' :'#1D1D1F',
-        'border_calendar' : '#E5E5E5'
+        'border_calendar' : '#E5E5E5',
+        'nav_bar' : '#1E1E1E',
+        'content_box' : '#3D3D3D',
+        'search_button': '#A4A0A0',
+        'hover_text_nav' : '#E57C00',
+        'waiting_job' : '#FFB302',
+        'get_job' : '#048C78',
+        'line_cream' : '#FFF3CD',
+        
       },
     },
   },

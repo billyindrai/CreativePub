@@ -30,7 +30,9 @@
                     <input class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="password">
                 </div>
                 <div class="container mt-6">
-                    <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Login</button>
+                    <a href="/">
+                        <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Login</button>
+                    </a>
                 </div>
                 <div class="relative flex mt-6 items-center">
                     <div class="flex-grow border-t border-cream_line"></div>
