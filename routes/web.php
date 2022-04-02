@@ -41,6 +41,11 @@ Route::get('/upload_job', function () {
     return view('upload_job_page');
 });
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 Route::get('/jobs', function () {
     return view('jobs');
 });
@@ -49,3 +54,6 @@ Route::get('/job_details', function () {
     return view('job_details');
 });
 
+Route::get('/my_jobs', function () {
+    return view('my_jobs');
+});

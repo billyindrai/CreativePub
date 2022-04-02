@@ -14,10 +14,17 @@
         <div>
             <p class="ml-5 font-sans text-xs text-black">1 - 20 of 200 Jobs</p>
         </div>
+<<<<<<< Updated upstream
         <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-black text-xs mr-5 font-sans">
             <li class="cursor-pointer hover:text-register_orange">Show 20 rows</li>
             <li class="cursor-pointer hover:text-register_orange">Prev</li>
             <li class="cursor-pointer hover:text-register_orange">Next</li>
+=======
+        <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-black text-xs font-sans text-base mr-5 ">
+            <li class="cursor-pointer hover:text-orange-500 text-black text-xs font-sans">Show 20 rows</li>
+            <li class="cursor-pointer hover:text-orange-500 text-black text-xs font-sans">Prev</li>
+            <li class="cursor-pointer hover:text-orange-500 text-black text-xs font-sans">Next</li>
+>>>>>>> Stashed changes
         </ul>
     </div>
 
