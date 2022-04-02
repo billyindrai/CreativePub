@@ -22,8 +22,9 @@ module.exports = {
         'hover_text_nav' : '#E57C00',
         'waiting_job' : '#FFB302',
         'get_job' : '#048C78',
+        'applied_job' : '#55AC24',
         'line_cream' : '#FFF3CD',
-        
+
       },
     },
   },

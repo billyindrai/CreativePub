@@ -10,7 +10,7 @@
         <script src="https://unpkg.com/flowbite@1.4.1/dist/datepicker.js"></script>
     </head>
     <body class="antialiased bg-background">
-        <header>
+        <header class="bg-nav_bar">
             <nav class=" container flex items-center bg-nav_bar py-5 mx-auto">
                 <div class=" w-52 ml-5 py-1">
                     <img src="{{ asset('images/CreativePub-tittle.png') }}" alt="">

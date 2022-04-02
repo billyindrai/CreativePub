@@ -5,7 +5,7 @@
 <div class="container md:flex grid grid-cols-2 px-32">
     <div class="border-dashed border-2 w-screen h-80 border-white rounded-md flex items-center mt-6">
         <div class="container">
-            <p class="text-white text-center font-medium text-xl mb-9">Upload your content</p>
+            <p class="text-white text-center font-medium text-xl mb-git9">Upload your content</p>
             <div class="container md:flex justify-center">
                 <div class="container w-max mr-9">
                     <button class="border-solid border w-16 h-16 border-white rounded-full">
@@ -15,6 +15,7 @@
                     </button>
                     <p class="text-white font-light text-base text-center">Image</p>
                 </div>
+                
                 <div class="container w-max mr-9">
                     <button class="border-solid border w-16 h-16 border-white rounded-full">
                         <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="38" height="30" viewBox="0 0 38 30" fill="none">
