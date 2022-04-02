@@ -43,9 +43,9 @@
         </div>
         <div class="container md:flex justify-end items-center">
             <img class="w-5" src="https://cdn.discordapp.com/attachments/752542767128772668/947775687748616202/unknown.png" alt="">
-            <p class="px-2 text-white text-xs font-normal">202</p>
+            <p class="px-2 text-white text-xs">202</p>
             <img class="w-5" src="https://cdn.discordapp.com/attachments/752542767128772668/947777319311904768/unknown.png" alt="">
-            <p class="px-2 text-white text-xs font-normal">61.5 K</p>
+            <p class="px-2 text-white text-xs">61.5 K</p>
         </div>
     </div>
 
