@@ -2,7 +2,7 @@
 @section('title','CreativePub')
 @section('content')
 
-<div class=" container-2xl flex items-center bg-zinc-600 mx-auto">
+<div class=" container-2xl flex items-center bg-content_box bg-opacity-20 mx-auto">
     <div class=" flex-initial items-center px-44 my-28">
         <img class="items-center" src="https://cdn.discordapp.com/attachments/711190437922209833/946664293779243048/unknown.png" alt="">
     </div>
@@ -17,11 +17,11 @@
 </div>
 <div class="container-2xl md:flex justify-center items-center mx-auto">
     <ul class="hidden md:flex flex-1 justify-center items-center gap-7 text-gray-50 text-base mr-5 font-sans">
-        <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">All</button>
-        <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Images</button>
-        <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Video</button>
-        <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Audio</button>
-        <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Script</button>
+        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">All</button>
+        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Images</button>
+        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Video</button>
+        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Audio</button>
+        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Script</button>
     </ul>
 </div>
 
@@ -259,9 +259,5 @@
             </div>
         </div>
     </div>
-
-    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
-
-    </body>
-
-    @endsection
+</div>
+@endsection

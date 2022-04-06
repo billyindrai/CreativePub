@@ -35,7 +35,7 @@
                 <div class="container-2xl md:flex flex-1 mt-7 justify-end items-center">
                     <div class="container-2xl">
                         <p class="font-sans font-bold text-white text-lg">Gulali Ayam</p>
-                        <p class="font-sans font-light text-white text-xs">Cilacap</p>
+                        <p class="font-sans font-light text-register_orange text-xs">Cilacap</p>
                     </div>
                     <img class="ml-4 rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                 </div>
