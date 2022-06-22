@@ -141,8 +141,46 @@
         </div>
     </div>
 </div>
-<div class="container md:flex mt-16 justify-center">
+<div class="container md:flex mt-16 pb-5 justify-center">
     <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium mr-32">Save as Draft</button>
-    <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Publish Now</button>
+    <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium" data-modal-toggle="continueGalleryModal">Continue</button>
 </div>
+<div id="continueGalleryModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+            <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
+                <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
+                    <div class="container border-dashed border-2 w-full h-80 border-white rounded-md flex items-center mt-6">
+                        <div class="container">
+                            <p class="text-white text-center font-medium px-8 text-xl mb-9">Upload your Gallery Cover</p>
+                            <div class="container md:flex justify-center">
+                                <div class="container-2xl md:flex flex-1 justify-center w-max ">
+                                    <div class="container-2xl items-center">
+                                        <button class="border-solid border w-16 h-16 border-white rounded-full">
+                                            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                                <path d="M30 26.6667V3.33333C30 1.5 28.5 0 26.6667 0H3.33333C1.5 0 0 1.5 0 3.33333V26.6667C0 28.5 1.5 30 3.33333 30H26.6667C28.5 30 30 28.5 30 26.6667ZM9.16667 17.5L13.3333 22.5167L19.1667 15L26.6667 25H3.33333L9.16667 17.5Z" fill="#FF8A00" />
+                                            </svg>
+                                        </button>
+                                    </div>         
+                                </div>
+                            </div>
+                            <p class="text-white font-light text-base pt-2 text-center">Minimum size of "214px x 212px</p>
+                        </div>
+                    </div>
+                    <div class="container-2xl pt-5 md:flex flex-1 items-center gap-3">
+                        <input type="checkbox" class="bg-transparent default:ring-2 w-4 h-4">
+                        <p class="font-sans text-lg text-white">
+                            I Agree to the <strong class="font-sans text-lg font-bold text-register_orange">Licence Terms </strong>and <strong class="font-sans text-lg font-bold text-register_orange">Copyright Terms </strong>
+                        </p>
+                    </div>
+                    <div class="container-2xl pt-5 md:flex flex-1 items-center">
+                        <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium mr-32">Save as Draft</button>
+                        <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Publish Now</button>
+                    </div>
+                </div>
+                <div class="container-2xl h-20">
+                    <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="continueGalleryModal">
+                            <svg class="h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+            </div>
+        </div>
 @endsection

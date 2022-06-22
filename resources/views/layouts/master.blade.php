@@ -22,37 +22,83 @@
                 <a href="/">
                     <li class="cursor-pointer hover:text-hover_text_nav">Home</li>
                 </a>
-                <a href="/jobs">
-                    <li class="cursor-pointer hover:text-hover_text_nav">Jobs</li>
-                </a>
-                <a href="/profile"><img class="rounded-full object-cover float-left w-10 h-10" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
+                    <li>
+                        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white text-sans" type="button">Jobs</button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                            <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownDefault">
+                            <li>
+                                <a href="/jobs" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Jobs</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">My Jobs</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Posted Jobs</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Draft Jobs</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="items-center">
+                            <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownProfile" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-60 dark:bg-gray-700">
+                            <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownDefault">
+                            <li>
+                                <a href="/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">
+                                <div class="container-2xl md:flex flex-1 p-2 items-center">
+                                    <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
+                                    <div class="container-2xl px-3 gap-2">
+                                        <p class="font-sans text-lg font-medium">Tono Sucipto</p>
+                                        <p class="font-sans text-sm font-normal">tono@gmai.com</p>
+                                    </div>
+                                </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Profile</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Logout</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </li>
                 </a>
                 <button class=" bg-register_orange hover:bg-orange-700 text-white rounded-md p-2 font-sans" data-modal-toggle="uploadModal">Upload</button>
             </ul>
         </nav>
         <div id="uploadModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
-        <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
-            <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
-                <p class="font-sans text-center text-white text-2xl">WHAT DO YOU WANT TO UPLOAD</p>
-                <div class="container-2xl justify-center md:flex flex-1 pt-8 gap-9">
-                    <a href="/upload_galery">
-                        <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">GALLERY</button>  
-                    </a>
-                    <a href="/upload_collection">
-                        <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">COLLECITON</button>  
-                    </a>
-                    <a href="/upload_job">
-                        <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">JOB</button>  
-                    </a>
+            <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
+                <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
+                    <p class="font-sans text-center text-white text-2xl">WHAT DO YOU WANT TO UPLOAD</p>
+                    <div class="container-2xl justify-center md:flex flex-1 pt-8 gap-9">
+                        <a href="/upload_galery">
+                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">GALLERY</button>  
+                        </a>
+                        <a href="/upload_collection">
+                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">COLLECITON</button>  
+                        </a>
+                        <a href="/upload_job">
+                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">JOB</button>  
+                        </a>
+                    </div>
+                </div>
+                <div class="container-2xl h-20">
+                    <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="uploadModal">
+                            <svg class="h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
                 </div>
             </div>
-            <div class="container-2xl h-20">
-                <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="uploadModal">
-                        <svg class="h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-                </button>
-            </div>
         </div>
-    </div>
     </header>
     @yield('content')
     <footer class="text-center bg-nav_bar text-white">
