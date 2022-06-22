@@ -21,7 +21,8 @@
         </ul>
     </div>
 
-    @for ($i = 0; $i <= 4; $i++) <div class="container-2xl md:flex flex-1 mx-48 px-10 border border-line_cream">
+    @for ($i = 0; $i <= 4; $i++) 
+    <div class="container-2xl md:flex flex-1 mx-48 px-10 border border-line_cream">
         <div class="container-2xl md:flex flex-1 ">
             <div class="container-2xl w-8/12">
                 <div class="container-2xl md:flex flex-1 mt-5 items-center">
