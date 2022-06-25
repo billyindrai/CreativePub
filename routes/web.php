@@ -53,3 +53,11 @@ Route::get('/job_details', function () {
 Route::get('/my_jobs', function () {
     return view('my_jobs');
 });
+
+Route::get('/premium', function () {
+    return view('premium_page');
+});
+
+Route::get('/payment', function () {
+    return view('payment_page');
+});

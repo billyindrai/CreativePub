@@ -3,7 +3,7 @@
 @section('content')
 
 <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">RECRUIT CREATOR YOU NEEDED</p>
-<div class="container md:flex justify-center">
+<div class="container-2xl md:flex justify-center">
     <div class="container w-fit">
         <div class="container">
             <p class="text-white text-xl font-semibold ">Job Tittle</p>
@@ -124,4 +124,5 @@
         <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium">Save as Draft</button>
     </div>
 </div>
+
 @endsection

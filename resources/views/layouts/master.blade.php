@@ -43,6 +43,11 @@
                         </div>
                     </li>
                     <li>
+                        <a href="/premium">
+                            <button class=" hover:text-white text-register_orange hover:bg-register_orange bg-white rounded-md p-2 font-sans">Premium</button>
+                        </a>
+                    </li>
+                    <li>
                         <button class="items-center">
                             <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                         </button>
@@ -55,7 +60,7 @@
                                     <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                                     <div class="container-2xl px-3 gap-2">
                                         <p class="font-sans text-lg font-medium">Tono Sucipto</p>
-                                        <p class="font-sans text-sm font-normal">tono@gmai.com</p>
+                                        <p class="font-sans text-sm font-normal">tono@gmail.com</p>
                                     </div>
                                 </div>
                                 </a>
@@ -85,7 +90,7 @@
                             <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">GALLERY</button>  
                         </a>
                         <a href="/upload_collection">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">COLLECITON</button>  
+                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">COLLECTION</button>  
                         </a>
                         <a href="/upload_job">
                             <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">JOB</button>  
