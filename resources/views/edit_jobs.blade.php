@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Upload Job | Creative Pub')
+@section('title','Edit Jobs | Creative Pub')
 @section('content')
 
 <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">RECRUIT CREATOR YOU NEEDED</p>
@@ -116,16 +116,16 @@
 </div>
 <div class="md:flex justify-center mt-16 ">
     <div>
-        <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium" data-modal-toggle="uploadJobModal">Publish Now</button>
+        <button class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium" data-modal-toggle="updateJobModal">Update</button>
     </div>
 </div>
 <div class="md:flex justify-center mt-6">
     <div>
-        <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium">Save as Draft</button>
+        <button class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium">Cancel</button>
     </div>
 </div>
 
-<div id="uploadJobModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+<div id="updateJobModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
                 <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
                     
@@ -137,11 +137,11 @@
                         </div>
                         
                         <p class="font-sans font-normal text-white text-lg text-center">
-                            Job uploaded successfully
+                            Job updated successfully
                         </p>
                         
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="uploadJobModal">Done</button>  
+                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="updateJobModal">Done</button>  
                         </div>
 
                   

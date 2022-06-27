@@ -21,7 +21,7 @@
         </ul>
     </div>
 
-    @for ($i = 0; $i <= 4; $i++) <div class="container-2xl md:flex flex-1 mx-48 px-10 border border-line_cream">
+    @for ($i = 0; $i <= 2; $i++) <div class="container-2xl md:flex flex-1 mx-48 px-10 border border-line_cream">
         <div class="container-2xl md:flex flex-1 ">
             <div class="container-2xl w-8/12">
                 <div class="container-2xl md:flex flex-1 mt-5 items-center">
@@ -30,7 +30,7 @@
                 </div>
                 <p class="text-register_orange text-lg font-sans font-bold"> Photo retouch for social media(instagram)</p>
                 <p class="text-white text-sm font-sans mt-3">We build custom wall beds and cabinetry and take many photos. Unfortunately, we don't always have ideal space or lighting for really professional photos. We would like them to be retouched and sized for social media accounts and portfolio pages on our website.</p>
-                <div class="container-2xl md:flex flex-1 gap-3 items-center mt-12">
+                <div class="container-2xl md:flex flex-1 gap-3 items-center mt-10 pb-5">
                     <p class="font-sans font-bold text-white text-base">Requested Tool</p>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.99999 0.333496L5.82499 1.5085L10.475 6.16683H0.333328V7.8335H10.475L5.82499 12.4918L6.99999 13.6668L13.6667 7.00016L6.99999 0.333496Z" fill="#E67C00"/>
@@ -52,9 +52,15 @@
                 </div>
                 <div class="container-2xl md:flex flex-1 mt-20 mb-4 justify-end">
                     <div class="container-2xl">
-                        <p class="font-sans text-sm font-f text-white">Send before <strong class="font-sans text-sm font-bold text-white"> Aug, 17 2022</strong> </p>
-                        <div class="container-2xl md:flex flex-1 justify-center">
-                            <a href="/job_details"><button class="bg-applied_job font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium"> Applied Job </button>
+                        <div class="container-2xl md:flex flex-1 justify-center mr-8">
+                            <a href="/job_details">
+                                @if($i==0)
+                                <p class="font-sans font-bold text-lg text-center text-applied_job">Applied</p>
+                                @elseif($i==1)
+                                <p class="font-sans font-bold text-lg text-center text-waiting_job">Waiting</p>
+                                @else 
+                                <p class="font-sans font-bold text-lg text-center text-cancelled_job">Cancelled</p>
+                                @endif
                             </a>
                         </div>
                     </div>

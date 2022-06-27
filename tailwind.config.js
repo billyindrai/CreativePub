@@ -24,6 +24,11 @@ module.exports = {
         'get_job' : '#048C78',
         'applied_job' : '#55AC24',
         'line_cream' : '#FFF3CD',
+        'applied_job': '#55AC24',
+        'waiting_job': '#FFB302',
+        'cancelled_job': '#C70000',
+        'amber_font': "#FFF3CD",
+        'gray_font': "#C4C4C4",
 
       },
     },

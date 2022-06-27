@@ -61,3 +61,35 @@ Route::get('/premium', function () {
 Route::get('/payment', function () {
     return view('payment_page');
 });
+
+Route::get('/posted_jobs', function () {
+    return view('posted_jobs');
+});
+
+Route::get('/draft_jobs', function () {
+    return view('draft_jobs');
+});
+
+Route::get('/edit_jobs', function () {
+    return view('edit_jobs');
+});
+
+Route::get('/edit_profile', function () {
+    return view('edit_profile_general');
+});
+
+Route::get('/edit_profile_password', function () {
+    return view('edit_profile_password');
+});
+
+Route::get('/edit_profile_social', function () {
+    return view('edit_profile_social');
+});
+
+Route::get('/edit_profile_bank', function () {
+    return view('edit_profile_bank');
+});
+
+Route::get('/monetize', function () {
+    return view('monetize');
+});
