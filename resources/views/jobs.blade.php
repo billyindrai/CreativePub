@@ -44,7 +44,7 @@
                     <div class="container-2xl">
                         <p class="font-sans text-sm font-f text-white">Send before <strong class="font-sans text-sm font-bold text-white"> Aug, 17 2022</strong> </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <a href="/job_details"><button class="bg-get_job font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium"> Get Job </button>
+                            <a href="/job_details"><button class="bg-register_orange font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium"> Get Job </button>
                             </a>
                         </div>
                     </div>

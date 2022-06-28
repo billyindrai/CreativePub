@@ -36,7 +36,7 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono / General</p>
+                <p class="font-sans text-xl font-bold text-white"> Tono / Social Network</p>
                 <p class="font-sans text-xs font-light text-white"> Update your link</p>
             </div>
         </div>
