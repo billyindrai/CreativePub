@@ -29,6 +29,7 @@ module.exports = {
         'cancelled_job': '#C70000',
         'amber_font': "#FFF3CD",
         'gray_font': "#C4C4C4",
+        'dark_font': "#3D3D3D",
 
       },
     },

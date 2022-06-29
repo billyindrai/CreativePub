@@ -44,7 +44,15 @@
                     </li>
                     <li>
                         <a href="/premium">
-                            <button class=" hover:text-white text-register_orange hover:bg-register_orange bg-white rounded-md p-2 font-sans">Premium</button>
+                            <button class="text-register_orange  bg-white rounded-md p-2 font-sans">
+                            <div class="container-2xl md:flex flex-1 justify-center items-center gap-2">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.5 17.5H3.5C3.225 17.5 3 17.7812 3 18.125V19.375C3 19.7188 3.225 20 3.5 20H16.5C16.775 20 17 19.7188 17 19.375V18.125C17 17.7812 16.775 17.5 16.5 17.5ZM18.5 5C17.6719 5 17 5.83984 17 6.875C17 7.15234 17.05 7.41016 17.1375 7.64844L14.875 9.34375C14.3938 9.70312 13.7719 9.5 13.4937 8.89062L10.9469 3.32031C11.2812 2.97656 11.5 2.46094 11.5 1.875C11.5 0.839844 10.8281 0 10 0C9.17188 0 8.5 0.839844 8.5 1.875C8.5 2.46094 8.71875 2.97656 9.05313 3.32031L6.50625 8.89062C6.22813 9.5 5.60313 9.70312 5.125 9.34375L2.86562 7.64844C2.95 7.41406 3.00312 7.15234 3.00312 6.875C3.00312 5.83984 2.33125 5 1.50312 5C0.675 5 0 5.83984 0 6.875C0 7.91016 0.671875 8.75 1.5 8.75C1.58125 8.75 1.6625 8.73438 1.74063 8.71875L4 16.25H16L18.2594 8.71875C18.3375 8.73438 18.4188 8.75 18.5 8.75C19.3281 8.75 20 7.91016 20 6.875C20 5.83984 19.3281 5 18.5 5Z" fill="#FF8A00"/>
+                                </svg>
+                                <p class="font-sans font-medium text-base "> PREMIUM</p>
+                            </div>
+    
+                            </button>
                         </a>
                     </li>
                     <li>

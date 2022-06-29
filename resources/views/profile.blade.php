@@ -74,9 +74,9 @@
     </div>
     <div class="pl-80">
         <ul class="hidden md:flex flex-1 justify-start items-start gap-7 text-gray-50 text-base mr-5 font-sans border-2 border-b-line_cream border-t-transparent border-r-transparent border-l-transparent pb-2">
-            <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
-            <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Favorites</button>
-            <button class=" hover:bg-orange-500 bg-transparent text-white rounded-md p-2 font-sans">Collection</button>
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Favorites</button>
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Collection</button>
         </ul>
         @for ($p = 0; $p <= 3; $p++) 
         <div class="container-2xl md:flex flex-1 gap-3 py-5 pr-5 justify-center">
@@ -88,13 +88,13 @@
                             <img class="rounded-full float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                             <div class="px-3.5 w-8/12">
                                 <p class="font-semibold font-sans text-white">Fajar</p>
-                                <p class="font-thin font-sans text-orange-500">Images</p>
+                                <p class="font-thin font-sans text-register_orange">Images</p>
                             </div>
                             <div class="container-2xd md:flex flex-1 justify-end items-center" data-dropdown-toggle="dropdownContent">
                                 <div  id="dropdownContent" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700">
                                     <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownContent">
                                     <li>
-                                        <a href="/edit_jobs" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit</a>
+                                        <a href="/edit_gallery" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit</a>
                                     </li>
                                     <li>
                                         <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box" data-modal-toggle="deleteModal">Delete</a>

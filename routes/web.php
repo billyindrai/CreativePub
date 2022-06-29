@@ -93,3 +93,7 @@ Route::get('/edit_profile_bank', function () {
 Route::get('/monetize', function () {
     return view('monetize');
 });
+
+Route::get('/edit_gallery', function () {
+    return view('edit_gallery');
+});
