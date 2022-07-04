@@ -36,60 +36,65 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono / General</p>
+                <p class="font-sans text-xl font-bold text-white"> {{Auth::user()->name}} / General</p>
                 <p class="font-sans text-xs font-light text-white"> Update your personal account</p>
             </div>
         </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Username
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Tono" type="text">
-                <p class="font-sans text-white text-xs font-light">
-                    Your CreativePub URL: https://creativepub.com/<strong class="text-amber_font font-sans font-bold">tono</strong> 
-                </p>
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Email
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="tono@gmail.com" type="text">
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Name
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Tono Sucipto" type="text">
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Profession
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Digital Artist" type="text">
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Location
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Yogyakarta" type="text">
-        </div>
-        <div class="container-2xl md:flex flex-1 w-full justify-center">
-            <div class="container-2xl gap-3 py-1 w-full ">
-                <p class="font-sans text-white font-medium">
-                    Bio
-                </p>
-                <textarea id="Address" name="description" class="bg-white rounded-lg w-full h-32 mt-2" placeholder="Ambitious digital artist seeking for opportunity"></textarea>
+
+        <form  method="POST" action="/edit_profile_general" id="formUpdate">
+            @csrf
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Username
+                    </p>
+                    <input id="usernamePengguna" name="usernamePengguna" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->usernamePengguna}}" type="text" required>
+                    <p class="font-sans text-white text-xs font-light">
+                        Your CreativePub URL: https://creativepub.com/<strong class="text-amber_font font-sans font-bold">{{Auth::user()->usernamePengguna}}</strong> 
+                    </p>
             </div>
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Quotes
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Be better for the future" type="text">
-        </div>
-        <div class="container-2xl py-3">
-            <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
-        </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Email
+                    </p>
+                    <input id="email" name="email" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->email}}" type="text" required>
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Name
+                    </p>
+                    <input id="name" name="name" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->name}}" type="text">
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Profession
+                    </p>
+                    <input id="penggunaProfession" name="penggunaProfession" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->penggunaProfession}}" type="text" required>
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Location
+                    </p>
+                    <input id="penggunaLocation" name="penggunaLocation" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->penggunaLocation}}" type="text" required>
+            </div>
+            <div class="container-2xl md:flex flex-1 w-full justify-center">
+                <div class="container-2xl gap-3 py-1 w-full ">
+                    <p class="font-sans text-white font-medium">
+                        Bio
+                    </p>
+                    <textarea form="formUpdate" id="penggunaBio" name="penggunaBio" class="bg-white rounded-lg w-full h-32 mt-2" placeholder="{{Auth::user()->penggunaBio}}" required></textarea>
+                </div>
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Quotes
+                    </p>
+                    <input id="penggunaQuotes" name="penggunaQuotes" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->penggunaQuotes}}" type="text" required>
+            </div>
+            <div class="container-2xl py-3">
+                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+            </div>
+        </form>
+
     </div>
     
 </div>

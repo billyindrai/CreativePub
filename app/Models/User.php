@@ -21,6 +21,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'langgananPengguna',
+        'premiumEndDate',
+        'penggunaGoogle',
+        'penggunaInstagram',
+        'penggunaLinkedIn',
+        'penggunaLocation',
+        'penggunaProfession',
+        'penggunaBio',
+        'penggunaQuotes',
+        'idPayment',
+        'idBankAccount',
+        'idTools',
+        'usernamePengguna',
     ];
 
     /**

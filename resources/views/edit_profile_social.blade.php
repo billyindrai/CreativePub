@@ -36,32 +36,31 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono / Social Network</p>
+                <p class="font-sans text-xl font-bold text-white"> {{Auth::user()->name}}/ Social Network</p>
                 <p class="font-sans text-xs font-light text-white"> Update your link</p>
             </div>
         </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Google
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="Tono@gmail.com" type="text">
-                
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Instagram
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="https://www.instagram.com/tono/" type="text">
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    LinkedIn
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="https://www.linkedin.com/in/tono/" type="text">
-        </div>
-        <div class="container-2xl py-3">
-            <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
-        </div>
+
+        <form method="POST" action="/edit_profile_social">
+            @csrf
+            
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Instagram
+                    </p>
+                    <input id="instagram" name="instagram" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="https://www.instagram.com/example/" type="text">
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        LinkedIn
+                    </p>
+                    <input id="lindkedIn" name="lindkedIn"class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="https://www.linkedin.com/in/example/" type="text">
+            </div>
+            <div class="container-2xl py-3">
+                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+            </div>
+        </form>
+
     </div>
     
 </div>

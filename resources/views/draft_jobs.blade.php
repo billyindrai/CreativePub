@@ -26,7 +26,7 @@
     </div>
     <div class="container-2xl md:flex flex-1 rounded-t-md py-4 mt-5 mx-48 bg-line_cream">
         <div>
-            <p class="ml-5 font-sans text-xs text-black">1 - 20 of 200 Jobs</p>
+            <p class="ml-5 font-sans text-xs text-black">1 - 20 of {{count($jobs)}} Jobs</p>
         </div>
         <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-black text-xs mr-5 font-sans">
             <li class="cursor-pointer hover:text-register_orange">Show 20 rows</li>
@@ -35,22 +35,22 @@
         </ul>
     </div>
 
-    @for ($i = 0; $i <= 4; $i++) 
+    @foreach ($jobs as $j) 
     <div class="container-2xl md:flex flex-1 mx-48 pl-10 pr-4 border border-line_cream">
         <div class="container-2xl md:flex flex-1 ">
             <div class="container-2xl w-8/12">
                 <div class="container-2xl md:flex flex-1 mt-5 items-center">
-                    <p class="font-sans text-xs font-light text-white">Posted <strong class="font-sans text-xs font-bold text-white"> 9 mins ago</strong> </p>
-                    <button class="bg-zinc-400 font-sans text-xs text-white rounded-md my-2 p-1 ml-10"> Images </button>
+                    <p class="font-sans text-xs font-light text-white">Posted <strong class="font-sans text-xs font-bold text-white"> {{$j->created_at}}</strong> </p>
+                    <button class="bg-zinc-400 font-sans text-xs text-white rounded-md my-2 p-1 ml-10"> {{$j->categoryJob}}</button>
                 </div>
-                <p class="text-register_orange text-lg font-sans font-bold"> Photo retouch for social media(instagram)</p>
-                <p class="text-white text-sm font-sans mt-3">We build custom wall beds and cabinetry and take many photos. Unfortunately, we don't always have ideal space or lighting for really professional photos. We would like them to be retouched and sized for social media accounts and portfolio pages on our website.</p>
+                <p class="text-register_orange text-lg font-sans font-bold"> {{$j->titleJob}}</p>
+                <p class="text-white text-sm font-sans mt-3">{{$j->descriptionJob}}</p>
             </div>
             <div class="container-2xl w-4/12">
                 <div class="container-2xl md:flex flex-1 mt-7 justify-end items-center">
                     <div class="container-2xl">
-                        <p class="font-sans font-bold text-white text-lg">Gulali Ayam</p>
-                        <p class="font-sans font-light text-register_orange text-xs">Cilacap</p>
+                        <p class="font-sans font-bold text-white text-lg">{{$j->name}}</p>
+                        <p class="font-sans font-light text-register_orange text-xs">{{$j->penggunaLocation}}</p>
                     </div>
                     <img class="ml-4 rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                 </div>
@@ -88,8 +88,8 @@
             
             </div>
         </div>
-</div>
-@endfor
+    </div>
+    @endforeach
 
 <div id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">

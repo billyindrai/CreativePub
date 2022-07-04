@@ -38,26 +38,31 @@
                 <p class="font-sans text-xs font-light text-white"> Update your bank account</p>
             </div>
         </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Bank
-                </p>
-                <select class="bg-white rounded-lg w-full h-10 mt-2" name="bank" id="bank">
-                    <option value="image">Mandiri</option>
-                    <option value="video">BCA</option>
-                    <option value="audio">BNI</option>
-                    <option value="script">BRI</option>
-                </select>
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Account Number
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="1234567890" type="text">
-        </div>
-        <div class="container-2xl py-3">
-            <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
-        </div>
+
+        <form method="POST" action="/edit_profile_bank" id="bankForm">
+            @csrf
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Bank
+                    </p>
+                    <select class="bg-white rounded-lg w-full h-10 mt-2" name="bank" id="bank" form="bankForm">
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BNI">BNI</option>
+                        <option value="BRI">BRI</option>
+                    </select>
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Account Number
+                    </p>
+                    <input name="bankNumber" id="bankNumber" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="1234567890" type="text">
+            </div>
+            <div class="container-2xl py-3">
+                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+            </div>
+        </form>
+
     </div>
     
 </div>

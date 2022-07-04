@@ -36,35 +36,40 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono / Password</p>
+                <p class="font-sans text-xl font-bold text-white"> {{Auth::user()->name}}/ Password</p>
                 <p class="font-sans text-xs font-light text-white"> Update your password</p>
             </div>
         </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Old Password
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="text">
-                
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    New Password
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="text">
-                <p class="font-sans text-white text-xs font-light">
-                    Minimum 6 characters 
-                </p>
-        </div>
-        <div class="container-2xl gap-3 py-1 w-full">
-                <p class="font-sans text-white font-medium">
-                    Confirm Password
-                </p>
-                <input class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="text">
-        </div>
-        <div class="container-2xl py-3">
-            <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
-        </div>
+
+        <form method="POST" action="/edit_profile_password">
+            @csrf
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Old Password
+                    </p>
+                    <input id="oldPassword" name="oldPassword" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="password" required>
+                    
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        New Password
+                    </p>
+                    <input id="newPassword" name="newPassword"  class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="password" required>
+                    <p class="font-sans text-white text-xs font-light">
+                        Minimum 8 characters 
+                    </p>
+            </div>
+            <div class="container-2xl gap-3 py-1 w-full">
+                    <p class="font-sans text-white font-medium">
+                        Confirm Password
+                    </p>
+                    <input id="confirmPassword" name="confirmPassword" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="password" required>
+            </div>
+            <div class="container-2xl py-3">
+                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+            </div>
+        </form>
+
     </div>
     
 </div>

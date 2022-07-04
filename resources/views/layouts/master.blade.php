@@ -18,6 +18,7 @@
             <div class=" w-52 ml-5 py-1">
                 <img src="{{ asset('images/CreativePub-tittle.png') }}" alt="">
             </div>
+            @if(Auth::check())
             <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-white text-base mr-5 font-sans">
                 <a href="/">
                     <li class="cursor-pointer hover:text-hover_text_nav">Home</li>
@@ -67,8 +68,8 @@
                                 <div class="container-2xl md:flex flex-1 p-2 items-center">
                                     <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                                     <div class="container-2xl px-3 gap-2">
-                                        <p class="font-sans text-lg font-medium">Tono Sucipto</p>
-                                        <p class="font-sans text-sm font-normal">tono@gmail.com</p>
+                                        <p class="font-sans text-lg font-medium">{{Auth::user()->name}}</p>
+                                        <p class="font-sans text-sm font-normal">{{Auth::user()->email}}</p>
                                     </div>
                                 </div>
                                 </a>
@@ -83,7 +84,14 @@
                                 <a href="/monetize" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Monetize</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Logout</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                        <button :href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();" class="block text-start w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">
+                                        <div class="container-2xl md:flex flex-1 justify-start w-full">
+                                            <p>Logout</p>
+                                        </div>
+                                        </button>
+                                </form>
                             </li>
                             </ul>
                         </div>
@@ -91,6 +99,28 @@
                 </a>
                 <button class=" bg-register_orange hover:bg-orange-700 text-white rounded-md p-2 font-sans" data-modal-toggle="uploadModal">Upload</button>
             </ul>
+            @else
+            <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-white text-base mr-5 font-sans">
+                <a href="/">
+                    <li class="cursor-pointer hover:text-hover_text_nav">Home</li>
+                </a>
+                    <li>
+                        <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-white text-sans" type="button">Jobs</button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                            <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownDefault">
+                            <li>
+                                <a href="/jobs" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Jobs</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </li>
+                </a>
+                <a href="/login">        
+                    <button class=" bg-register_orange hover:bg-orange-700 text-white rounded-md p-2 font-sans">Login</button>
+                </a>
+            </ul>
+            @endif
         </nav>
         <div id="uploadModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">

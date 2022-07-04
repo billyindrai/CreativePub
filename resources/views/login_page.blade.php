@@ -21,19 +21,25 @@
         <div class="container md:flex flex-1 justify-center mt-28 ml-6">
             <ul class="mr-12  ">
                 <li class="text-white text-6xl font-bold text-center">Log in</li>
-                <div class="container mt-12">
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div class="container mt-12">
                     <li class="text-white text-xl font-light">email or phone number</li>
-                    <input class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="email">
-                </div>
-                <div class="container mt-6">
-                    <li class="text-white text-xl font-light">password</li>
-                    <input class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="password">
-                </div>
-                <div class="container mt-6">
-                    <a href="/">
-                        <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Login</button>
-                    </a>
-                </div>
+                        <input id="email"  name="email" :value="old('email')" required autofocus class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="email">
+                    </div>
+                    <div class="container mt-6">
+                        <li class="text-white text-xl font-light">password</li>
+                        <input id="password" name="password" required autocomplete="current-password"  class=" bg-white rounded-lg w-80 h-10 mt-0.5" type="password">
+                    </div>
+                    <div class="container mt-6">
+                            <button class="bg-register_orange text-white rounded-lg w-80 h-10 text-2xl font-bold">Login</button>
+                    </div>
+                </form>
+
+                
+
                 <div class="relative flex mt-6 items-center">
                     <div class="flex-grow border-t border-cream_line"></div>
                     <span class="flex-shrink mx-4 text-white text-sm font-extralight"> or login with</span>
