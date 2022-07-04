@@ -51,6 +51,7 @@ Route::get('/upload_job', function () {
 Route::get('/jobs',[JobController::class, 'index']);
 Route::get('/draft_jobs',[JobController::class, 'indexDraftJob']);
 Route::get('/job_detail',[JobController::class, 'indexDetailJob']);
+Route::post('/apply_job',[JobController::class, 'userApplyJob']);
 
 
 

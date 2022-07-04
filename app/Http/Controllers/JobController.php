@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Models\MyJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,10 +38,25 @@ class JobController extends Controller
             }
             $jobsOther = Job::join('users','job.idPengguna','=','users.id')->where('job.idPengguna','=',$idJobOwner)->where('job.draftStatusJob','=',FALSE)->get();
             $jobsOtherFinished = Job::join('users','job.idPengguna','=','users.id')->where('job.idPengguna','=',$idJobOwner)->where('job.draftStatusJob','=',FALSE)->where('job.finishStatusJob','=',TRUE)->get();
-            $jobsFromSameUser = Job::join('users','job.idPengguna','=','users.id')->where('job.idPengguna','=',$idJobOwner)->where('job.draftStatusJob','=',FALSE)->where('job.finishStatusJob','=',FALSE)->take(3)->get();
-            $jobsSimilar = Job::join('users','job.idPengguna','=','users.id')->where('job.categoryJob','=',$categoryJob)->where('job.draftStatusJob','=',FALSE)->take(3)->get();
+            $jobsFromSameUser = Job::join('users','job.idPengguna','=','users.id')->where('job.idPengguna','=',$idJobOwner)->where('job.draftStatusJob','=',FALSE)->where('job.finishStatusJob','=',FALSE)->where('job.idJob','!=',$request->jobId)->take(3)->get();
+            $jobsSimilar = Job::join('users','job.idPengguna','=','users.id')->where('job.categoryJob','=',$categoryJob)->where('job.draftStatusJob','=',FALSE)->where('job.idJob','!=',$request->jobId)->take(3)->get();
             return view('job_details',['jobs' => $jobs, 'otherJobs' => $jobsOther, 'otherJobsFinished' => $jobsOtherFinished, 'jobsFromSameUser' => $jobsFromSameUser,'jobsSimilar' => $jobsSimilar]);
     }
+
+    public function userApplyJob(Request $request, Job $job)
+    {
+
+        if(Auth::check()){
+            MyJob::create([
+                'statusMyJobs' => FALSE,
+                'idPengguna' => Auth::user()->id,
+                'idJob' => $request->jobId,
+                ]);
+                return view('/profile');
+        } else {
+            return view('/login_page');
+        }
+    }        
 
     public function createUploadJob()
     {
