@@ -52,6 +52,10 @@ Route::get('/jobs',[JobController::class, 'index']);
 Route::get('/draft_jobs',[JobController::class, 'indexDraftJob']);
 Route::get('/job_detail',[JobController::class, 'indexDetailJob']);
 Route::post('/apply_job',[JobController::class, 'userApplyJob']);
+Route::get('/my_jobs',[JobController::class, 'indexMyJobs']);
+Route::get('/posted_jobs',[JobController::class, 'indexPostedJobs']);
+Route::post('/delete_posted_job',[JobController::class, 'deletePostedJob']);
+
 
 
 

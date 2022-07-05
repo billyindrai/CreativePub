@@ -43,18 +43,50 @@ class JobController extends Controller
             return view('job_details',['jobs' => $jobs, 'otherJobs' => $jobsOther, 'otherJobsFinished' => $jobsOtherFinished, 'jobsFromSameUser' => $jobsFromSameUser,'jobsSimilar' => $jobsSimilar]);
     }
 
-    public function userApplyJob(Request $request, Job $job)
+    public function indexPostedJobs(Request $request, Job $job)
     {
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','=', Auth::user()->id)->select('users.name','users.penggunaLocation','job.*')->get();
+        
+            return view('posted_jobs',['jobs' => $jobs]);
+    }
 
-        if(Auth::check()){
+    public function indexMyJobs(Request $request, Job $job)
+    {
+            $jobs = Job::join('my_jobs','job.idJob','=','my_jobs.idJob')->join('users','job.idPengguna','=','users.id')->where('my_jobs.idPengguna','=',Auth::user()->id)->get();
+        
+            return view('my_jobs',['jobs' => $jobs]);
+    }
+
+    public function deletePostedJob(Request $request, Job $job)
+    {
+            Job::where('idJob','=',$request->jobId)->delete();        
+            return redirect('/posted_jobs');
+    }
+
+    public function userApplyJob(Request $request, Job $job ,MyJob $myJobs)
+    {
+        $myJobs = MyJob::all();
+        $status = TRUE;
+
+        foreach($myJobs as $mj){
+            if($mj->idJob == $request->jobId && $mj->idPengguna == Auth::user()->id){
+                $status = FALSE;
+                break;
+            }
+        }
+
+        if(Auth::check() && $status == TRUE){
+
             MyJob::create([
-                'statusMyJobs' => FALSE,
+                'statusMyJobs' => 'Waiting',
                 'idPengguna' => Auth::user()->id,
                 'idJob' => $request->jobId,
                 ]);
                 return view('/profile');
-        } else {
-            return view('/login_page');
+        } else if(Auth::check()) {
+            return redirect('/jobs');
+        } else{
+            return view('login');
         }
     }        
 
