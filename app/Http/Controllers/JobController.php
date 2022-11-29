@@ -16,6 +16,12 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function tes()
+    {
+            return view('/');
+    }
+
     public function index()
     {
             $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->get();
@@ -46,8 +52,30 @@ class JobController extends Controller
     public function indexPostedJobs(Request $request, Job $job)
     {
             $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','=', Auth::user()->id)->select('users.name','users.penggunaLocation','job.*')->get();
+            $jobsDetail = array();
+            $i = 0;
+            foreach($jobs as $j){
+                $jobsDetail[$i] = MyJob::where('idJob','=',$j->idJob)->get();
+                $i = $i + 1;
+            };
+            // $jobsDetail = MyJob::where('idJob','=',3)->get();
         
-            return view('posted_jobs',['jobs' => $jobs]);
+            return view('posted_jobs',['jobs' => $jobs, 'jobsDetail' => $jobsDetail]);
+    }
+    public function showApplicantsPostedJobs(Request $request)
+    {
+            $myJobs = MyJob::join('users','my_jobs.idPengguna','=','users.id')->where('my_jobs.idJob','=', $request->jobId)->where('my_jobs.statusMyJobs','=','Waiting')->get();
+            return response()->json($myJobs);
+            // return view('posted_jobs',['myJobs' => $myJobs]);
+    }
+
+    public function acceptCreator(Request $request)
+    {
+            $myJobs = MyJob::where('idMyJobs','=',$request->idJob)->update([
+                'statusMyJobs' => 'Applied'
+            ]);
+            return redirect()->back();
+            // return view('posted_jobs',['myJobs' => $myJobs]);
     }
 
     public function indexMyJobs(Request $request, Job $job)
@@ -58,10 +86,74 @@ class JobController extends Controller
     }
 
     public function deletePostedJob(Request $request, Job $job)
-    {
+    {       
+            MyJob::where('idJob','=',$request->jobId)->delete(); 
             Job::where('idJob','=',$request->jobId)->delete();        
             return redirect('/posted_jobs');
     }
+
+    public function deleteDraftJob(Request $request, Job $job)
+    {       
+            Job::where('idJob','=',$request->jobId)->delete();        
+            return redirect('/draft_jobs');
+    }
+
+    public function postDraftJob(Request $request, Job $job)
+    {
+            Job::where('idJob','=',$request->jobId)->update([
+                'draftStatusJob' => FALSE,
+                 ]);        
+            return redirect('/posted_jobs');
+    }
+
+    public function editJob(Request $request)
+    {
+           $jobDetail = Job::where('idJob','=',$request->idJob)->get();
+           foreach($jobDetail as $jd){
+            $jd->dueDateJob = date('m-d-Y', strtotime($jd->dueDateJob));
+        
+           }        
+            return view('/edit_jobs',['jobDetail' => $jobDetail]);
+    }
+
+    public function storedEditedJob(Request $request)
+    {
+        $request->validate([
+            'titleJob' => ['required', 'string'],            
+            'toolsJob' => ['required', 'string'], 
+            'categoryJob' => ['required', 'string'],  
+            'descriptionJob' => ['required', 'string'],  
+            'tagsJob' => ['required', 'string'],  
+            'dueDateJob' => ['required', 'string'],         
+        ]);
+        
+        $user_id = Auth::user()->id;
+        $time = strtotime($request->dueDateJob);
+        $newformat = date('Y-m-d',$time);
+
+        switch ($request->input('button')) {
+            case 'publish':
+                Job::where('idJob','=', $request->idJob )->update([
+                                    'titleJob' => $request->titleJob,
+                                    'toolsJob' => $request->toolsJob,
+                                    'categoryJob' => $request->categoryJob,
+                                    'tagsJob' => $request->tagsJob,
+                                    'dueDateJob' => $newformat,
+                                    'draftStatusJob' => FALSE,
+                                    'idPengguna' => $user_id,
+                                    'descriptionJob' => $request->descriptionJob,
+                                    'finishStatusJob' => FALSE,
+                                    ]);
+                return redirect('/posted_jobs');
+                break;
+    
+            case 'cancel':
+                return redirect('/posted_jobs');
+                break;
+    
+        }
+    }
+
 
     public function userApplyJob(Request $request, Job $job ,MyJob $myJobs)
     {
@@ -139,7 +231,7 @@ class JobController extends Controller
                                     'descriptionJob' => $request->descriptionJob,
                                     'finishStatusJob' => FALSE,
                                     ]);
-                return view('/profile');
+                return redirect()->route('show_posted_jobs');  
                 break;
     
             case 'draft':
@@ -154,24 +246,10 @@ class JobController extends Controller
                     'descriptionJob' => $request->descriptionJob,
                     'finishStatusJob' => FALSE,
                     ]);
-                return view('/profile');
+                return redirect()->route('show_draft_jobs');  
                 break;
     
         }
-        
-        // if(Auth::user()->idBankAccount==NULL){
-        //     $bankAccount = BankAccount::create([
-        //                     'bankBankAccount' => $request->bank,
-        //                     'accountNumberBankAccount' => $request->bankNumber,
-        //                 ]);
-            
-        //     User::where('id', $user_id )->update(['idBankAccount' => $bankAccount->idBankAccount]);
-        // } else{
-        //     BankAccount::where('idBankAccount',Auth::user()->idBankAccount)->update([
-        //         'bankBankAccount' => $request->bank,
-        //         'accountNumberBankAccount' => $request->bankNumber,
-        //     ]);
-        // }
     }
 
     /**

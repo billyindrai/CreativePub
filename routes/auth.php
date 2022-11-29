@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\CollectionController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -63,6 +65,24 @@ Route::post('/edit_profile_password', [AuthenticatedSessionController::class, 'u
 Route::post('/edit_profile_social', [AuthenticatedSessionController::class, 'updateProfileSocial']);
 Route::post('/edit_profile_bank', [AuthenticatedSessionController::class, 'updateProfileBank']);
 Route::post('/upload_job', [JobController::class, 'store']);
+Route::post('/upload_gallery_no_cover', [GalleryController::class, 'storeWithoutCover']);
+Route::post('/upload_gallery_cover', [GalleryController::class, 'storeFinalize']);
+Route::post('/delete_gallery', [GalleryController::class, 'deleteGallery']);
+Route::get('/edit_gallery/{gallery}',[GalleryController::class, 'editGallery']);
+Route::post('/edit_gallery_no_cover',[GalleryController::class, 'storeEditWithoutCover']);
+Route::post('/edit_gallery_cover', [GalleryController::class, 'storeEditFinalize']);
+Route::post('/upload_collection_no_cover', [CollectionController::class, 'storeWithoutCover']);
+Route::post('/upload_collection_cover', [CollectionController::class, 'storeFinalize']);
+Route::post('/delete_collection', [CollectionController::class, 'deleteCollection']);
+Route::get('/edit_collection/{collection}',[CollectionController::class, 'editCollection']);
+Route::post('/edit_collection_no_cover',[CollectionController::class, 'storeEditWithoutCover']);
+Route::post('/edit_collection_cover', [CollectionController::class, 'storeEditFinalize']);
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,255 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Collection;
+
+class CollectionController extends Controller
+{
+    public function storeWithoutCover(Request $request, Collection $collection)
+    {
+        $request->validate([
+            'titleCollection' => ['required', 'string'],            
+            'toolsCollection' => ['required', 'string'], 
+            'categoryCollection' => ['required', 'string'],  
+            'descriptionCollection' => ['required', 'string'],  
+            'tagsCollection' => ['required', 'string'],    
+            'fileCollection' => ['required','file'],       
+        ]);
+        
+
+        if ($request->hasFile('fileCollection')){
+
+			$file = $request->file('fileCollection');
+			$nama_file = $file->getClientOriginalName();
+        }
+        //  dd($request->input('button'));
+        
+        $user_id = Auth::user()->id;
+
+        
+        
+        switch ($request->button) {
+            case 'continue':
+                Collection::create([
+                                    'titleCollection' => $request->titleCollection,
+                                    'toolsCollection' => $request->toolsCollection,
+                                    'categoryCollection' => $request->categoryCollection,
+                                    'tagsCollection' => $request->tagsCollection,
+                                    'draftStatusCollection' => TRUE,
+                                    'idPengguna' => $user_id,
+                                    'descriptionCollection' => $request->descriptionCollection,
+                                    'contentCollection' => '/images/Collection/' . $nama_file,
+                                    'likeCollection' => 0,
+                                    'viewCollection' => 0,
+                                    'approvalCollection' => FALSE,
+                                    ]);
+                $file->move('images/Collection',$nama_file);
+                $currentCollection = Collection::all()->last();
+                return response()->json($currentCollection);
+                break;
+    
+            case 'draft':
+                Collection::create([
+                    'titleCollection' => $request->titleCollection,
+                    'toolsCollection' => $request->toolsCollection,
+                    'categoryCollection' => $request->categoryCollection,
+                    'tagsCollection' => $request->tagsCollection,
+                    'draftStatusCollection' => TRUE,
+                    'idPengguna' => $user_id,
+                    'descriptionCollection' => $request->descriptionCollection,
+                    'contentCollection' => '/images/Collection/' . $nama_file,
+                    'likeCollection' => 0,
+                    'viewCollection' => 0,
+                    'approvalCollection' => FALSE,
+                    ]);
+                $file->move('images/Collection',$nama_file);
+                return redirect()->route('profile.collection');   
+                break;
+    
+        }
+
+        
+    }
+
+    public function storeFinalize(Request $request, Collection $collection)
+    {
+        $request->validate([ 
+            'collectionCover' => ['required','file'],       
+        ]);
+
+        
+
+        if ($request->hasFile('collectionCover')){
+
+			$file = $request->file('collectionCover');
+			$nama_file = $file->getClientOriginalName();
+           
+        }
+        
+        $user_id = Auth::user()->id;
+        
+        switch ($request->button) {
+            case 'publish':
+                Collection::where('idCollection','=',$request->collectionId)->update([
+                    'draftStatusCollection' => FALSE,
+                    'coverCollection' => '/images/Collection/Cover/' . $nama_file,
+                     ]);
+                $file->move('images/Collection/Cover',$nama_file);
+                return redirect()->route('profile.collection');       
+                break;
+    
+            case 'draft':
+                Collection::where('idCollection','=',$request->collectionId)->update([
+                    'coverCollection' => '/images/Collection/Cover/' . $nama_file,
+                     ]);
+                return redirect()->route('profile.collection');   
+                break;
+    
+        }
+
+        
+    }
+
+    public function showCollectionProfile(Collection $collection)
+    {
+        $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.draftStatusCollection','=',FALSE)->where('collection.approvalCollection','=',TRUE)->where('collection.idPengguna','=', Auth::user()->id)->get();
+        return view('profile_collection',['collection' => $collection]);
+        
+    }
+
+    public function showDraftCollectionProfile()
+    {
+        $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.draftStatusCollection','=',TRUE)->where('collection.idPengguna','=', Auth::user()->id)->get();
+        return view('profile_draft_collection',['collection' => $collection]);     
+    }
+
+    public function deleteCollection(Request $request, Collection $collection)
+    {       
+            Collection::where('idCollection','=',$request->collectionId)->delete();        
+            return redirect()->route('profile.collection'); 
+    }
+
+    public function editCollection(Request $request)
+    {
+           $collection = Collection::where('idCollection','=',$request->collectionId)->get();      
+            return view('/edit_collection',['collection' => $collection]);
+    }
+
+    public function storeEditWithoutCover(Request $request, Collection $collection)
+    {
+        $request->validate([
+            'titleCollection' => ['required', 'string'],            
+            'toolsCollection' => ['required', 'string'], 
+            'categoryCollection' => ['required', 'string'],  
+            'descriptionCollection' => ['required', 'string'],  
+            'tagsCollection' => ['required', 'string'],          
+        ]);
+
+      
+        if ($request->hasFile('fileCollection')){
+
+			$file = $request->file('fileCollection');
+			$nama_file = $file->getClientOriginalName();
+            $file->move('images/Collection',$nama_file);
+
+            switch ($request->button) {
+                case 'continue':
+                    Collection::where('idCollection','=', $request->collectionId )->update([
+                                        'titleCollection' => $request->titleCollection,
+                                        'toolsCollection' => $request->toolsCollection,
+                                        'categoryCollection' => $request->categoryCollection,
+                                        'tagsCollection' => $request->tagsCollection,
+                                        'descriptionCollection' => $request->descriptionCollection,
+                                        'contentCollection' => '/images/Collection/' . $nama_file,
+                                        ]);
+                    return response()->json($request->collectionId);
+                    break;
+        
+                case 'draft':
+                    Collection::where('idCollection','=', $request->collectionId )->update([
+                        'titleCollection' => $request->titleCollection,
+                        'toolsCollection' => $request->toolsCollection,
+                        'categoryCollection' => $request->categoryCollection,
+                        'tagsCollection' => $request->tagsCollection,
+                        'descriptionCollection' => $request->descriptionCollection,
+                        'contentCollection' => '/images/Collection/' . $nama_file,
+                        'draftStatusCollection' => TRUE,
+                        ]);
+                    return redirect()->route('profile.collection');     
+                    break;
+        
+            }
+        } else {
+            switch ($request->button) {
+                case 'continue':
+                    Collection::where('idCollection','=', $request->collectionId )->update([
+                        'titleCollection' => $request->titleCollection,
+                        'toolsCollection' => $request->toolsCollection,
+                        'categoryCollection' => $request->categoryCollection,
+                        'tagsCollection' => $request->tagsCollection,
+                        'descriptionCollection' => $request->descriptionCollection,
+                        ]);
+                    return response()->json($request->collectionId);
+                    break;
+        
+                case 'draft':
+                    Collection::where('idCollection','=', $request->collectionId )->update([
+                        'titleCollection' => $request->titleCollection,
+                        'toolsCollection' => $request->toolsCollection,
+                        'categoryCollection' => $request->categoryCollection,
+                        'tagsCollection' => $request->tagsCollection,
+                        'descriptionCollection' => $request->descriptionCollection,
+                        'draftStatusCollection' => TRUE,
+                        ]);
+                    return redirect()->route('profile.collection');     
+                    break;
+        
+            }
+
+        }        
+    }
+
+    public function storeEditFinalize(Request $request, Collection $collection)
+    {
+        $request->validate([ 
+            'collectionCover' => ['required','file'],       
+        ]);
+
+        
+
+        if ($request->hasFile('collectionCover')){
+
+			$file = $request->file('collectionCover');
+			$nama_file = $file->getClientOriginalName();
+            $file->move('images/Collection/Cover',$nama_file);
+        }
+        //  dd($request->input('button'));
+        
+        $user_id = Auth::user()->id;
+
+        switch ($request->input('button')) {
+            case 'publish':
+                Collection::where('idCollection','=',$request->collectionId)->update([
+                    'coverCollection' => '/images/Collection/Cover/' . $nama_file,
+                    'draftStatusCollection' => FALSE,
+                     ]);
+                return redirect()->route('profile.collection');       
+                break;
+    
+            case 'draft':
+                Collection::where('idCollection','=',$request->collectionId)->update([
+                    'draftStatusCollection' => TRUE,
+                    'coverCollection' => '/images/Collection/Cover/' . $nama_file,
+                     ]);
+                return redirect()->route('profile.collection');   
+                break;
+    
+        }
+
+        
+    }
+}

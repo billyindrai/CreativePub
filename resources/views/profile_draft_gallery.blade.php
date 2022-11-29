@@ -28,9 +28,9 @@
             </div>
         </div>
         <div class="container py-3">
-            <p class="text-center text-2xl font-sans font-bold">{{Auth::user()->name}}</p>
-            <p class="text-center font-sans text-sm font-light">{{Auth::user()->penggunaProfession}}, {{Auth::user()->penggunaLocation}}</p>
-            <p class="text-center font-sans font-normal text-xs">{{Auth::user()->penggunaBio}}</p>
+            <p class="text-center text-2xl font-sans font-bold">TONO SUCIPTO</p>
+            <p class="text-center font-sans text-sm font-light">Digital Artist, Yogyakarta</p>
+            <p class="text-center font-sans font-normal text-xs">Ambitious Digital Artist Seeking for Opportunity</p>
         </div>
         <div class="container md:flex flex-1 gap-2 py-2 mb-5 justify-center">
             <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,11 +49,11 @@
             </svg>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black border-t-black md:flex flex-1 justify-center py-5">
-            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Edit Profile</button>
+            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Follow</button>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Quotes</p>
-            <p class="text-xs font-sans font-light">{{Auth::user()->penggunaQuotes}}</p>
+            <p class="text-xs font-sans font-light">Be Better for the Future</p>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Tools Used</p>
@@ -75,7 +75,7 @@
     <div class="pl-80">
         <ul class="hidden md:flex flex-1 justify-start items-start gap-7 text-gray-50 text-base mr-5 font-sans border-2 border-b-line_cream border-t-transparent border-r-transparent border-l-transparent pb-2">
             <a href="/profile">
-                <button class=" bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
+                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
             </a>
             <a href="">
                 <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Favorites</button>
@@ -87,7 +87,7 @@
                 <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Draft Collection</button>
             </a>
             <a href="/profile_draft_gallery">
-                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Draft Gallery</button>
+                <button class=" bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans">Draft Gallery</button>
             </a>
         </ul>
         <div class="grid grid-cols-4 container-2xl gap-3 py-5 pr-5 justify-center">

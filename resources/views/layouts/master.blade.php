@@ -5,11 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title')</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/flowbite@1.4.1/dist/datepicker.js"></script>
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
 </head>
 
 <body class="antialiased bg-background">
@@ -127,7 +135,7 @@
                 <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
                     <p class="font-sans text-center text-white text-2xl">WHAT DO YOU WANT TO UPLOAD</p>
                     <div class="container-2xl justify-center md:flex flex-1 pt-8 gap-9">
-                        <a href="/upload_galery">
+                        <a href="/upload_gallery">
                             <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans">GALLERY</button>  
                         </a>
                         <a href="/upload_collection">

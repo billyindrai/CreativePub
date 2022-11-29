@@ -2,6 +2,7 @@
 @section('title','Jobs List | Creative Pub')
 @section('content')
 
+
 <div class="container-2xl py-5 mx-auto">
     <div class="container-2xl md:flex flex-1  py-2 mt-5 h-fit mx-48 gap-5">
         <input class=" placeholder:text-gray_font bg-white rounded-md text-white py-2 px-2 w-9/12 shadow-md text-xs" type="text" placeholder="Search...">
@@ -57,14 +58,19 @@
                 <div class="container-2xl md:flex flex-1 mt-20 mb-4 justify-end">
                     <div class="container-2xl">
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium" data-modal-toggle="applicantsModal"> Applicants </button>
+                            <form id="applicantForm<?php echo htmlspecialchars($j->idJob); ?>" method="POST" action="/show_applicants">
+                            @csrf
+                                <input type="hidden" id="token<?php echo htmlspecialchars($j->idJob); ?>" value="{{ @csrf_token() }}">
+                                <input type="hidden" name="jobId" id="jobId<?php echo htmlspecialchars($j->idJob); ?>" value="{{$j->idJob}}">
+                                <button type="submit" class="bg-register_orange font-sans text-sm text-white w-28 rounded-md my-2 p-1 font-medium" data-modal-toggle="applicantsModal<?php echo htmlspecialchars($j->idJob); ?>"> Applicants </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container-2xl items-start py-2">
                 <button>
-                    <div class="container-2xl md:flex flex-1 gap-1 items-center" data-dropdown-toggle="dropdownJobs">
+                    <div class="container-2xl md:flex flex-1 gap-1 items-center" data-dropdown-toggle="dropwDown<?php echo htmlspecialchars($j->titleJob); ?>">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14.3989 0.65625C14.5726 0.656256 14.7418 0.711906 14.8821 0.815188C15.0225 0.91847 15.1267 1.06405 15.1799 1.23097L16.0822 4.0615C16.4612 4.24866 16.8238 4.459 17.1699 4.69584L20.0509 4.06978C20.2207 4.03317 20.3977 4.05193 20.5564 4.12337C20.715 4.1948 20.847 4.31522 20.9335 4.46728L23.2074 8.44062C23.2943 8.5926 23.331 8.76848 23.3125 8.94291C23.2939 9.11735 23.2209 9.28132 23.1041 9.41119L21.1271 11.614C21.1559 12.0364 21.1559 12.4603 21.1271 12.8827L23.1041 15.0888C23.2209 15.2187 23.2939 15.3827 23.3125 15.5571C23.331 15.7315 23.2943 15.9074 23.2074 16.0594L20.9335 20.0344C20.8468 20.1861 20.7146 20.3062 20.556 20.3773C20.3974 20.4485 20.2206 20.467 20.0509 20.4302L17.1699 19.8042C16.8254 20.0393 16.4612 20.2513 16.0838 20.4385L15.1799 23.269C15.1267 23.4359 15.0225 23.5815 14.8821 23.6848C14.7418 23.7881 14.5726 23.8437 14.3989 23.8438H9.85111C9.67744 23.8437 9.50825 23.7881 9.36791 23.6848C9.22757 23.5815 9.12332 23.4359 9.07017 23.269L8.16947 20.4402C7.7915 20.2536 7.42694 20.0405 7.07845 19.8025L4.19916 20.4302C4.0293 20.4668 3.85231 20.4481 3.69368 20.3766C3.53506 20.3052 3.40299 20.1848 3.3165 20.0327L1.0426 16.0594C0.955765 15.9074 0.918986 15.7315 0.937562 15.5571C0.956138 15.3827 1.02911 15.2187 1.14595 15.0888L3.12291 12.8827C3.09427 12.4614 3.09427 12.0386 3.12291 11.6173L1.14595 9.41119C1.02911 9.28132 0.956138 9.11735 0.937562 8.94291C0.918986 8.76848 0.955765 8.5926 1.0426 8.44062L3.3165 4.46562C3.40323 4.31387 3.5354 4.19379 3.69401 4.12266C3.85261 4.05153 4.02947 4.03302 4.19916 4.06978L7.07845 4.6975C7.42627 4.46066 7.79049 4.247 8.16947 4.05984L9.07181 1.23097C9.12479 1.06459 9.22854 0.919393 9.36822 0.816161C9.50791 0.712929 9.67636 0.656955 9.84947 0.65625H14.3973H14.3989ZM13.7985 2.3125H10.4516L9.5197 5.23909L8.89135 5.54881C8.58244 5.70142 8.28425 5.87517 7.99885 6.06888L7.41806 6.46637L4.43869 5.81713L2.76525 8.74537L4.80783 11.0277L4.75861 11.7299C4.73504 12.0762 4.73504 12.4238 4.75861 12.7701L4.80783 13.4723L2.76197 15.7546L4.43705 18.6829L7.41642 18.0353L7.99721 18.4311C8.28261 18.6248 8.5808 18.7986 8.8897 18.9512L9.51806 19.2609L10.4516 22.1875H13.8017L14.7369 19.2593L15.3636 18.9512C15.6722 18.7989 15.9698 18.6252 16.2545 18.4311L16.8336 18.0353L19.8146 18.6829L21.4881 15.7546L19.4438 13.4723L19.4931 12.7701C19.5167 12.4232 19.5167 12.0751 19.4931 11.7283L19.4438 11.026L21.4897 8.74537L19.8146 5.81713L16.8336 6.46306L16.2545 6.06888C15.9699 5.87479 15.6722 5.70101 15.3636 5.54881L14.7369 5.24075L13.8001 2.3125H13.7985ZM12.125 7.28125C13.4304 7.28125 14.6823 7.80474 15.6053 8.73656C16.5283 9.66838 17.0469 10.9322 17.0469 12.25C17.0469 13.5678 16.5283 14.8316 15.6053 15.7634C14.6823 16.6953 13.4304 17.2188 12.125 17.2188C10.8197 17.2188 9.56776 16.6953 8.64473 15.7634C7.7217 14.8316 7.20314 13.5678 7.20314 12.25C7.20314 10.9322 7.7217 9.66838 8.64473 8.73656C9.56776 7.80474 10.8197 7.28125 12.125 7.28125ZM12.125 8.9375C11.2548 8.9375 10.4202 9.28649 9.80482 9.90771C9.18947 10.5289 8.84377 11.3715 8.84377 12.25C8.84377 13.1285 9.18947 13.9711 9.80482 14.5923C10.4202 15.2135 11.2548 15.5625 12.125 15.5625C12.9953 15.5625 13.8299 15.2135 14.4452 14.5923C15.0606 13.9711 15.4063 13.1285 15.4063 12.25C15.4063 11.3715 15.0606 10.5289 14.4452 9.90771C13.8299 9.28649 12.9953 8.9375 12.125 8.9375Z" fill="#FFF3CD"/>
                         </svg>
@@ -73,16 +79,7 @@
                         </svg>
                     </div>   
                 </button>                 
-                <div id="dropdownJobs" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700">
-                            <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownDefault">
-                            <li>
-                                <a href="/edit_jobs" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit</a>
-                            </li>
-                            <li>
-                                <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box" data-modal-toggle="<?php echo htmlspecialchars($j->titleJob); ?>">Delete</a>
-                            </li>
-                            </ul>
-                </div>
+                
             
             </div>
         </div>
@@ -90,18 +87,31 @@
 
     @endforeach
 
-<div id="applicantsModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+<form action="POST">
+    <input id="numberOfApply" name="numberOfApply" type="hidden">
+</form>
+
+<?php
+    $numberOfApplicants = 0;
+?>
+ 
+@foreach($jobs as $j)
+<div id="applicantsModal<?php echo htmlspecialchars($j->idJob); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-8/12 max-w-2xl h-full md:h-auto ">
-                <div class="container-2xl py-8 px-3  items-center bg-zinc-800  w-10/12 rounded-lg">
-                    <p class="font-sans text-center text-white text-lg mb-4">Applicants List</p>
-                    @for ($i = 0; $i <= 4; $i++) 
-                    <div class="container-2xl md:flex flex-1 items-center px-4 py-4 border-b border-amber-200">
-                        <div class="container-2xl md:flex flex-1 gap-2 items-center">
+                <div id="ApplyList<?php echo htmlspecialchars($j->idJob); ?>"  class="container-2xl py-8 px-3  items-center bg-zinc-800  w-10/12 rounded-lg">
+                    <p class="font-sans text-center text-white text-lg mb-4">Applicants</p>
+ 
+                    <!-- <div lass="container-2xl md:flex flex-1 items-center px-4 py-4 border-b border-amber-200"> -->
+                        <!-- <div class="container-2xl md:flex flex-1 gap-2 items-center">
                             <img class="rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                             <div class="container-2xl gap-2">
-                                <p class="font-sans text-lg text-center text-white font-medium">TONO SUCIPTO</p>
-                                <p class="font-sans text-xs text-center text-white font-light">Digital Artist, Yogyakarta</p>
-                                <div class="container-2xl md:flex flex-1 gap-3">
+                                <p id="namaApply" class="font-sans text-lg text-center text-white font-medium">Nama</p>
+                                <div class="container-2xl md:flex flex-1 gap-1 justify-center">
+                                    <p id="professionApply" class="font-sans text-xs text-center text-white font-light">Digital Artist, Yogyakarta</p>
+                                    <p class="font-sans text-xs text-center text-white font-light">,</p>
+                                    <p id="locationApply" class="font-sans text-xs text-center text-white font-light">Digital Artist, Yogyakarta</p>
+                                </div>
+                                <div class="container-2xl md:flex flex-1 gap-3 ">
                                     <div class="container-2xl">
                                         <p class="text-center text-white font-medium text-xs">200</p>
                                         <p class="text-center text-white font-light text-xs">content</p>
@@ -116,21 +126,23 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="container-2xl md:flex flex-1 items-center justify-end">
+                        </div> -->
+                        <!-- <div class="container-2xl md:flex flex-1 items-center justify-end">
                             <button class="bg-register_orange font-sans text-sm text-white w-auto px-5 rounded-md my-2 py-1 font-medium" data-modal-toggle="applyCreatorModal"> Accept </button>
                         </div>
+                    </div> -->
 
-                    </div>
-                    @endfor
                 </div>
                 <div class="container-2xl h-20">
-                    <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="applicantsModal">
+                    <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="applicantsModal<?php echo htmlspecialchars($j->idJob); ?>">
                             <svg class="h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                     </button>
                 </div>
             </div>
 </div>
+@endforeach
+
+
 <div id="applyCreatorModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
                 <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
@@ -189,5 +201,94 @@
         </div>
 
 </div>
+<div id="dropwDown<?php echo htmlspecialchars($j->titleJob); ?>" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700">
+                            <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownDefault">
+                            <li>
+                                <form method="GET" action="/edit_job/{{$j->idJob}}">
+                                    @csrf
+                                    <input type="hidden" id="idJob" name="idJob" value="{{$j->idJob}}">
+                                    <button class="block px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit</button>
+                                </form>
+                            </li>
+                            <li>
+                                <button class="block px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box" data-modal-toggle="<?php echo htmlspecialchars($j->titleJob); ?>">Delete</button>
+                            </li>
+                            </ul>
+                </div>
+@endforeach
+
+
+@foreach($jobs as $jb)
+<script>
+    $(document).ready(function(){
+        $("#applicantForm"+{!! $jb->idJob!!}).submit(function(e){
+            e.preventDefault();
+            let url = $(this).attr('action');
+
+            $.post(url, {
+                '_token': $("#token"+{!! $jb->idJob!!}).val(),
+                jobId: $("#jobId"+{!! $jb->idJob!!}).val()
+            }, function(response){
+                var num;
+                var htmlCode = "";
+                for (i = 0; i < response.length; i++) {
+
+
+                htmlCode  =  htmlCode + '<div class="container-2xl md:flex flex-1 items-center px-4 py-4 border-b border-amber-200">'+
+                                        '<div class="container-2xl md:flex flex-1 gap-2 items-center">'+
+                                            '<img class="rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">'+
+                                            '<div class="container-2xl gap-2">'+
+                                                '<p id="namaApply" class="font-sans text-lg text-center text-white font-medium">'+response[i].name+'</p>'+
+                                                '<div class="container-2xl md:flex flex-1 gap-1 justify-center">'+
+                                                    '<p id="professionApply" class="font-sans text-xs text-center text-white font-light">'+response[i].penggunaProfession+'</p>'+
+                                                    '<p class="font-sans text-xs text-center text-white font-light">'+","+'</p>'+
+                                                    '<p id="locationApply" class="font-sans text-xs text-center text-white font-light">'+response[i].penggunaLocation+'</p>'+
+                                                '</div>'+
+                                                '<div class="container-2xl md:flex flex-1 gap-3 ">'+
+                                                    '<div class="container-2xl">'+
+                                                        '<p class="text-center text-white font-medium text-xs">'+"200"+'</p>'+
+                                                        '<p class="text-center text-white font-light text-xs">'+"content"+'</p>'+
+                                                    '</div>'+
+                                                    '<div class="container-2xl">'+
+                                                        '<p class="text-center text-white font-medium text-xs">'+"123"+'</p>'+
+                                                        '<p class="text-center text-white font-light text-xs">'+"followers"+'</p>'+
+                                                    '</div>'+
+                                                    '<div class="container-2xl">'+
+                                                        '<p class="text-center text-white font-medium text-xs">'+"123"+'</p>'+
+                                                        '<p class="text-center text-white font-light text-xs">'+"likes"+'</p>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="container-2xl md:flex flex-1 items-center justify-end">'+
+                                        '<form method="POST" action="/acceptCreator">'+
+                                        '@csrf'+
+                                            '<input name="idJob" id="idJob" type="hidden" value="'+response[i].idMyJobs+'">'+
+                                            '<button class="bg-register_orange font-sans text-sm text-white w-auto px-5 rounded-md my-2 py-1 font-medium" data-modal-toggle="applyCreatorModal">'+"Accept"+'</button>'+
+                                        '</form>'+
+                                        '</div>'+
+                                        '</div>';
+                    $('#ApplyList'+{!! $jb->idJob!!}).html(htmlCode);
+
+
+
+
+
+
+
+
+
+
+                    // $('#namaApply').html(response[i].name);
+                    // $('#professionApply').html(response[i].penggunaProfession);
+                    // $('#locationApply').html(response[i].penggunaLocation);
+                    console.log(response[i]);
+                    // num = i;
+                } 
+            });
+            
+        })
+    })
+</script>
 @endforeach
 @endsection

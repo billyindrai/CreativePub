@@ -28,9 +28,9 @@
             </div>
         </div>
         <div class="container py-3">
-            <p class="text-center text-2xl font-sans font-bold">{{Auth::user()->name}}</p>
-            <p class="text-center font-sans text-sm font-light">{{Auth::user()->penggunaProfession}}, {{Auth::user()->penggunaLocation}}</p>
-            <p class="text-center font-sans font-normal text-xs">{{Auth::user()->penggunaBio}}</p>
+            <p class="text-center text-2xl font-sans font-bold">TONO SUCIPTO</p>
+            <p class="text-center font-sans text-sm font-light">Digital Artist, Yogyakarta</p>
+            <p class="text-center font-sans font-normal text-xs">Ambitious Digital Artist Seeking for Opportunity</p>
         </div>
         <div class="container md:flex flex-1 gap-2 py-2 mb-5 justify-center">
             <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,11 +49,11 @@
             </svg>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black border-t-black md:flex flex-1 justify-center py-5">
-            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Edit Profile</button>
+            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Follow</button>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Quotes</p>
-            <p class="text-xs font-sans font-light">{{Auth::user()->penggunaQuotes}}</p>
+            <p class="text-xs font-sans font-light">Be Better for the Future</p>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Tools Used</p>
@@ -75,13 +75,13 @@
     <div class="pl-80">
         <ul class="hidden md:flex flex-1 justify-start items-start gap-7 text-gray-50 text-base mr-5 font-sans border-2 border-b-line_cream border-t-transparent border-r-transparent border-l-transparent pb-2">
             <a href="/profile">
-                <button class=" bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
+                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
             </a>
-            <a href="">
+            <a href="/profile_favorite">
                 <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Favorites</button>
             </a>
             <a href="/profile_collection">
-                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Collection</button>
+                <button class=" bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans">Collection</button>
             </a>
             <a href="/profile_draft_collection">
                 <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Draft Collection</button>
@@ -91,29 +91,29 @@
             </a>
         </ul>
         <div class="grid grid-cols-4 container-2xl gap-3 py-5 pr-5 justify-center">
-            @foreach($galleries as $g)
+            @foreach($collection as $c)
             <div>
                 <div>
                     <div class="container bg-zinc-700 rounded-lg shadow-lg p-4">
                         <div class="container md:flex items-center">
                             <img class="rounded-full float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                             <div class="px-3.5 w-8/12">
-                                <p class="font-semibold font-sans text-white">{{$g->name}}</p>
-                                <p class="font-thin font-sans text-register_orange">{{$g->categoryGallery}}</p>
+                                <p class="font-semibold font-sans text-white">{{$c->name}}</p>
+                                <p class="font-thin font-sans text-register_orange">{{$c->categoryCollection}}</p>
                             </div>
-                            <div class="container-2xd md:flex flex-1 justify-end items-center" data-dropdown-toggle="dropdownContent<?php echo htmlspecialchars($g->idGallery); ?>">
-                                <div  id="dropdownContent<?php echo htmlspecialchars($g->idGallery); ?>" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700">
+                            <div class="container-2xd md:flex flex-1 justify-end items-center" data-dropdown-toggle="dropdownContent<?php echo htmlspecialchars($c->idCollection); ?>">
+                                <div  id="dropdownContent<?php echo htmlspecialchars($c->idCollection); ?>" class="z-10 hidden bg-content_box divide-y divide-gray-100 rounded shadow w-auto dark:bg-gray-700">
                         
                                         <ul class="py-1 text-sm text-white dark:text-gray-200" aria-labelledby="dropdownContent">
                                         <li>
-                                            <form method="GET" action="/edit_gallery/{{$g->idGallery}}">
+                                            <form method="GET" action="/edit_collection/{{$c->idCollection}}">
                                                 @csrf
-                                                <input type="hidden" id="galleryId" name="galleryId" value="{{$g->idGallery}}">
+                                                <input type="hidden" id="collectionId" name="collectionId" value="{{$c->idCollection}}">
                                                 <button class="block px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">Edit</button>
                                             </form>
                                         </li>
                                         <li>
-                                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box" data-modal-toggle="deleteModal<?php echo htmlspecialchars($g->idGallery); ?>">Delete
+                                            <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box" data-modal-toggle="deleteModal<?php echo htmlspecialchars($c->idCollection); ?>">Delete
                                             <button id="button" name="button" value="delete"  class="hidden"></button>
                                             </a>
                                         </li>
@@ -132,14 +132,14 @@
                         </div>
 
                         <div class="container relative overflow-hidden py-2">
-                            <img src="{{$g->coverGallery}}" alt="" class="rounded-md object-cover w-80 h-60 " />
-                            <div class="absolute py-2.5 bottom-2 inset-x-0 opacity-80 bg-black text-white text-xs text-center leading-4 rounded-b-md font-sans font-medium">{{$g->titleGallery}}</div>
+                            <img src="{{$c->coverCollection}}" alt="" class="rounded-md object-cover w-80 h-60 " />
+                            <div class="absolute py-2.5 bottom-2 inset-x-0 opacity-80 bg-black text-white text-xs text-center leading-4 rounded-b-md font-sans font-medium">{{$c->titleCollection}}</div>
                         </div>
                         <div class="container md:flex justify-end items-center">
                             <img class="w-5" src="https://cdn.discordapp.com/attachments/752542767128772668/947775687748616202/unknown.png" alt="">
-                            <p class="px-2 text-amber-100">{{$g->likeGallery}}</p>
+                            <p class="px-2 text-amber-100">{{$c->likeCollection}}</p>
                             <img class="w-5" src="https://cdn.discordapp.com/attachments/752542767128772668/947777319311904768/unknown.png" alt="">
-                            <p class="px-2 text-amber-100">{{$g->viewGallery}}</p>
+                            <p class="px-2 text-amber-100">{{$c->viewCollection}}</p>
                         </div>
                     </div>
                 </div>
@@ -149,8 +149,8 @@
     </div>
 </div>
 
-@foreach($galleries as $g)
-<div id="deleteModal<?php echo htmlspecialchars($g->idGallery); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+@foreach($collection as $c)
+<div id="deleteModal<?php echo htmlspecialchars($c->idCollection); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
                 <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
                     
@@ -161,14 +161,14 @@
                         </div>
                         
                         <p class="font-sans font-normal text-white text-lg text-center">
-                            Are you sure want to delete <strong class="font-sans text-amber_font font-bold text-lg">{{$g->titleGallery}}</strong>
+                            Are you sure want to delete <strong class="font-sans text-amber_font font-bold text-lg">{{$c->titleCollection}}</strong>
                         </p>
                         
                         <div class="container-2xl md:flex flex-1 justify-center gap-8">
-                            <button class="text-register_orange hover:bg-orange-700 w-28 bg-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="deleteModal<?php echo htmlspecialchars($g->idGallery); ?>">Cancel</button>  
-                            <form method="POST" action="/delete_gallery">
+                            <button class="text-register_orange hover:bg-orange-700 w-28 bg-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="deleteModal<?php echo htmlspecialchars($c->idCollection); ?>">Cancel</button>  
+                            <form method="POST" action="/delete_collection">
                             @csrf
-                                <input type="text" name="galleryId" id="galleryId" value="{{$g->idGallery}}" class="hidden">
+                                <input type="text" name="collectionId" id="collectionId" value="{{$c->idCollection}}" class="hidden">
                                 <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" >Delete</button> 
                             </form> 
                         </div>
