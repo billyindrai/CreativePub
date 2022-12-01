@@ -158,10 +158,14 @@
                         @if(Auth::user()->langgananPengguna == TRUE)
                         <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Download</button>
                         @else
-                        <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Subscribe Premium to Download</button>
+                        <a href="/premium">
+                            <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Subscribe Premium to Download</button>
+                         </a>
                         @endif
                     @else
-                    <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Login to Download</button>
+                    <a href="/login">
+                        <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Login to Download</button>
+                    </a>
                     @endif
                 </div>
 
