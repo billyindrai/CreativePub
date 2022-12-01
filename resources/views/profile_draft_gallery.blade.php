@@ -9,7 +9,7 @@
 </div>
 
 <div class=" grid grid-cols-6 container-2xl md:flex pl-20 items-start bg-zinc-800 mx-auto pt-5">
-    <div class="absolute top-72 float-left col-span-3 w-64 container bg-white opacity-90 rounded-lg shadow-lg p-4">
+    <<div class="absolute top-72 float-left col-span-3 w-64 container bg-white opacity-90 rounded-lg shadow-lg p-4">
         <div class="container md:flex flex-1 justify-center pt-3 items-center">
             <img class="rounded-full object-cover w-14 h-14" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
         </div>
@@ -28,9 +28,9 @@
             </div>
         </div>
         <div class="container py-3">
-            <p class="text-center text-2xl font-sans font-bold">TONO SUCIPTO</p>
-            <p class="text-center font-sans text-sm font-light">Digital Artist, Yogyakarta</p>
-            <p class="text-center font-sans font-normal text-xs">Ambitious Digital Artist Seeking for Opportunity</p>
+            <p class="text-center text-2xl font-sans font-bold">{{Auth::user()->name}}</p>
+            <p class="text-center font-sans text-sm font-light">{{Auth::user()->penggunaProfession}}, {{Auth::user()->penggunaLocation}}</p>
+            <p class="text-center font-sans font-normal text-xs">{{Auth::user()->penggunaBio}}</p>
         </div>
         <div class="container md:flex flex-1 gap-2 py-2 mb-5 justify-center">
             <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,11 +49,11 @@
             </svg>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black border-t-black md:flex flex-1 justify-center py-5">
-            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Follow</button>
+            <button class=" bg-register_orange hover:bg-orange-500 text-white rounded-md p-2 w-64 font-sans">Edit Profile</button>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Quotes</p>
-            <p class="text-xs font-sans font-light">Be Better for the Future</p>
+            <p class="text-xs font-sans font-light">{{Auth::user()->penggunaQuotes}}</p>
         </div>
         <div class="border-2 border-r-transparent border-l-transparent border-b-black py-3">
             <p class="text-sm font-sans font-semibold">Tools Used</p>

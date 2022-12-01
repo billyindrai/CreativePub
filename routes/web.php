@@ -18,15 +18,15 @@ use App\Http\Controllers\CollectionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/',[GalleryController::class, 'showGalleryHome'])->name('gallery.home');
+Route::get('/home_collection_all',[CollectionController::class, 'showCollectionHome'])->name('collection.home');
 Route::get('/profile',[GalleryController::class, 'showGalleryProfile'])->name('profile');
 Route::get('/profile_collection',[CollectionController::class, 'showCollectionProfile'])->name('profile.collection');
 Route::get('/profile_draft_collection',[CollectionController::class, 'showDraftCollectionProfile'])->name('profile.draft.collection');
 Route::get('/profile_draft_gallery',[GalleryController::class, 'showDraftGalleryProfile'])->name('profile.draft.gallery');
+Route::post('/show_comments',[GalleryController::class, 'showComments'])->name('show.comments');
+Route::post('/input_comment',[GalleryController::class, 'storeComments'])->name('store.comments');
+
 
 Route::get('/edit_profile', function () {
     return view('edit_profile_general');

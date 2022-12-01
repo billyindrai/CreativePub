@@ -18,10 +18,10 @@
 <div class="container-2xl md:flex justify-center ">
     <ul class="hidden md:flex flex-1 justify-center items-center gap-7 text-gray-50 text-base mr-5 font-sans pb-2">
             <a href="/">
-                <button class=" bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
+                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Gallery</button>
             </a>
             <a href="/home_collection_all">
-                <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Collection</button>
+                <button class=" bg-register_orange text-white rounded-md p-2 font-sans">Collection</button>
             </a>
     </ul>
 </div>
@@ -43,19 +43,16 @@
             <img class="rounded-full float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="px-3.5">
                 <p class="font-semibold font-sans text-white">{{$g->name}}</p>
-                <p class="font-thin font-sans text-register_orange">{{$g->categoryGallery}}</p>
+                <p class="font-thin font-sans text-register_orange">{{$g->categoryCollection}}</p>
             </div>
         </div>
 
         <div class="container relative overflow-hidden py-2">
-            <img src="{{$g->coverGallery}}" alt="" class="object-cover w-80 h-60 rounded-md" />
+            <img src="{{$g->coverCollection}}" alt="" class="object-cover w-80 h-60 rounded-md" />
             <div class="absolute py-2.5 bottom-2 inset-x-0 opacity-80 bg-black text-white text-xs text-center leading-4 rounded-b-md font-sans font-medium">
-                <form id="commentForm<?php echo htmlspecialchars($g->idGallery); ?>" method="POST" action="/show_comments">
-                            @csrf
-                                <input type="hidden" id="token<?php echo htmlspecialchars($g->idGallery); ?>" value="{{ @csrf_token() }}">
-                                <input type="hidden" name="galleryId" id="galleryId<?php echo htmlspecialchars($g->idGallery); ?>" value="{{$g->idGallery}}">
-                                <button type="submit" data-modal-toggle="<?php echo htmlspecialchars($g->idGallery); ?>"> {{$g->titleGallery}}</button>
-                </form>
+                
+                <button type="submit" data-modal-toggle="<?php echo htmlspecialchars($g->idCollection); ?>"> {{$g->titleCollection}}</button>
+               
             </div>
         </div>
         <div class="container md:flex justify-end items-center">
@@ -72,13 +69,13 @@
 </div>
 
 @foreach($gallery as $g)
-    <div id="<?php echo htmlspecialchars($g->idGallery); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+    <div id="<?php echo htmlspecialchars($g->idCollection); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
         <div class="relative container bg-zinc-800 md:flex flex-1 p-4 w-full max-w-2xl h-full ">
             <div class="container-2xl w-full py-3 px-16 rounded-md">
                 <div class="container-2xl md:flex flex-1 mb-3 items-center">
                     <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
                     <div class="px-3.5">
-                        <p class="font-semibold font-sans text-white">{{$g->titleGallery}}</p>
+                        <p class="font-semibold font-sans text-white">{{$g->titleCollection}}</p>
                         <p class="font-thin font-sans text-xs text-white">{{$g->name}} <strong class="font-sans text-xs font-bold text-register_orange"> Follow </strong></p>
                     </div>
                     <div class="container-2xl md:flex flex-1 justify-end items-end gap-3">
@@ -106,15 +103,15 @@
                         <!-- Item 1 -->
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
                             <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800"></span>
-                            <img src="{{$g->contentGallery}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                            <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
                         </div>
                         <!-- Item 2 -->
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{$g->contentGallery}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                            <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
                         </div>
                         <!-- Item 3 -->
                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{$g->contentGallery}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                            <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
                         </div>
                     </div>
                     <!-- Slider indicators -->
@@ -143,43 +140,13 @@
                     <p class="text-white font-sans text-xs leading-relaxed">tes </p>
                 </div>
                 <div class="container-2xl md:flex flex-1 pb-3 border-b border-amber-200 gap-3">
-                    <button class="bg-register_orange text-white rounded-md p-2 text-xs font-sans">{{$g->tagsGallery}}</button>
-                </div>
-                <div class="container-2xl my-3">
-                    <p class="font-sans text-white">Comment <sup id="totalComments<?php echo htmlspecialchars($g->idGallery); ?>" class="font-sans text-base text-register_orange"></sup></p>
+                    <button class="bg-register_orange text-white rounded-md p-2 text-xs font-sans">{{$g->tagsCollection}}</button>
                 </div>
 
-                <div id="commentsList<?php echo htmlspecialchars($g->idGallery); ?>" class="container-2xl items-center">
-                    <!-- <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
-                    <div class="px-3.5">
-                        <p class="font-semibold font-sans text-white">Billy Indra</p>
-                        <p class="font-thin font-sans text-white">Looks so good</p>
-                        <p class="font-thin font-sans text-xs text-white">About <strong class="font-sans text-xs font-bold text-register_orange"> 3 hours </strong></p>
-                    </div> -->
-                </div>
-                @if(Auth::check())
-                <div class="container-2xl bg-content_box rounded-lg p-4">
-                    <div class="container-2xl md:flex flex-1 mb-3 items-center pb-3 border-b border-amber-200">
-                        <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
-                            <div class="px-3.5">
-                                <p class="font-semibold font-sans text-white">{{Auth::user()->name}}</p>
-                            </div>
-                    </div>
-                    <form id="inputCommentForm<?php echo htmlspecialchars($g->idGallery); ?>" method="POST" action="/input_comment">
-                    @csrf
-                        <div class="container-2xl p-3 h-20">
-                            <input type="hidden" name="galleryId" value="{{$g->idGallery}}">
-                            <input name="isiKomentar" class=" placeholder:text-white bg-content_box rounded-md text-white px-2 w-full border-transparent h-full" type="text" placeholder="Write your comment here">
-                        </div>
-                        <div class="container-2xl md:flex flex-1 justify-end items-end">
-                            <button type="submit" class="bg-register_orange hover:bg-orange-700 text-white rounded-md p-2 text-xs font-sans">Comment</button>  
-                        </div> 
-                    </form>
-                </div>
-                @endif
+            
             </div>
             <div class="container-2xl w-20">
-                <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="<?php echo htmlspecialchars($g->idGallery); ?>">
+                <button type="button" class="text-register_orange bg-transparent hover:bg-orange-700 hover:text-gray-900 rounded-lg text-sm p-1.5 mx-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="<?php echo htmlspecialchars($g->idCollection); ?>">
                             <svg class="h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
                 </button>
                 <div class="container-2xl mt-24">
@@ -223,46 +190,8 @@
 @endforeach
 </div>
 
-@foreach($gallery as $g)
-<script>
-    $(document).ready(function(){
-        $("#commentForm"+{!! $g->idGallery!!}).submit(function(e){
-            e.preventDefault();
-            let url = $(this).attr('action');
-
-            $.post(url, {
-                '_token': $("#token"+{!! $g->idGallery!!}).val(),
-                galleryId: $("#galleryId"+{!! $g->idGallery!!}).val()
-            }, function(response){
-                var num;
-                var htmlCode = "";
-                for (i = 0; i < response.length; i++) {
 
 
-                htmlCode  =  htmlCode + '<div class="container-2xl md:flex flex-1 mb-3 items-center">'+
-                    '<img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">' +
-                    '<div class="px-3.5">' +
-                        '<p class="font-semibold font-sans text-white">' + response[i].name + '</p>' +
-                        '<p class="font-thin font-sans text-white">' + response[i].isiKomentar + '</p>' +
-                    '</div>'
-                    +'</div>';
-                $('#commentsList'+{!! $g->idGallery!!}).html(htmlCode);
-                $('#totalComments'+{!! $g->idGallery!!}).html(response.length);
-
-
-
-
-
-
-
-
-                } 
-            });
-            
-        })
-    })
-</script>
-@endforeach
 
 
 

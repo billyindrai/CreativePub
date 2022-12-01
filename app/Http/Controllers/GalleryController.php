@@ -8,15 +8,43 @@ use App\Models\Job;
 use App\Models\User;
 use App\Models\MyJob;
 use App\Models\Gallery;
+use App\Models\Komentar;
 use Illuminate\Support\Facades\Auth;
 
 class GalleryController extends Controller
 {
     //Show all the galleries
-    public function index()
+    // public function index()
+    // {
+    //         $gallery = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->get();
+    //         return view('jobs',['jobs' => $jobs]);
+    // }
+
+    public function showGalleryHome()
     {
-            $gallery = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->get();
-            return view('jobs',['jobs' => $jobs]);
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->paginate(18);
+            return view('welcome',['gallery' => $gallery]);
+    }
+
+    public function showComments(Request $request)
+    {
+            $comments = Komentar::join('users','komentar.idPengguna','=','users.id')->where('komentar.idGallery','=', $request->galleryId)->get();
+            return response()->json($comments);
+            // return view('posted_jobs',['myJobs' => $myJobs]);
+    }
+
+    public function storeComments(Request $request)
+    {
+            $request->validate([
+                'isiKomentar' => ['required', 'string'],         
+            ]);
+            Komentar::create([
+                'idGallery' => $request->galleryId,
+                'isiKomentar' => $request->isiKomentar,
+                'idPengguna' => Auth::user()->id,
+                ]);
+            return redirect('/');
+            // return view('posted_jobs',['myJobs' => $myJobs]);
     }
 
     public function storeWithoutCover(Request $request, Gallery $gallery)

@@ -75,6 +75,12 @@ class CollectionController extends Controller
         
     }
 
+    public function showCollectionHome()
+    {
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->paginate(18);
+            return view('welcome_collection',['gallery' => $collection]);
+    }
+
     public function storeFinalize(Request $request, Collection $collection)
     {
         $request->validate([ 

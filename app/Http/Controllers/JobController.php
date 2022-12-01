@@ -174,7 +174,7 @@ class JobController extends Controller
                 'idPengguna' => Auth::user()->id,
                 'idJob' => $request->jobId,
                 ]);
-                return view('/profile');
+                return redirect('/my_jobs');
         } else if(Auth::check()) {
             return redirect('/jobs');
         } else{

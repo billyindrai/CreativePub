@@ -99,7 +99,6 @@
 <div id="applicantsModal<?php echo htmlspecialchars($j->idJob); ?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div class="relative container md:flex justify-center flex-1 p-4 w-8/12 max-w-2xl h-full md:h-auto ">
                 <div id="ApplyList<?php echo htmlspecialchars($j->idJob); ?>"  class="container-2xl py-8 px-3  items-center bg-zinc-800  w-10/12 rounded-lg">
-                    <p class="font-sans text-center text-white text-lg mb-4">Applicants</p>
  
                     <!-- <div lass="container-2xl md:flex flex-1 items-center px-4 py-4 border-b border-amber-200"> -->
                         <!-- <div class="container-2xl md:flex flex-1 gap-2 items-center">
@@ -230,6 +229,7 @@
                 jobId: $("#jobId"+{!! $jb->idJob!!}).val()
             }, function(response){
                 var num;
+                var header = '<p class="font-sans text-center text-white text-lg mb-4">Applicants</p>';
                 var htmlCode = "";
                 for (i = 0; i < response.length; i++) {
 
@@ -268,7 +268,7 @@
                                         '</form>'+
                                         '</div>'+
                                         '</div>';
-                    $('#ApplyList'+{!! $jb->idJob!!}).html(htmlCode);
+                    $('#ApplyList'+{!! $jb->idJob!!}).html(header+htmlCode);
 
 
 
