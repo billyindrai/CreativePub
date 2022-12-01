@@ -27,11 +27,21 @@
 </div>
 <div class="container-2xl md:flex justify-center items-center mx-auto">
     <ul class="hidden md:flex flex-1 justify-center items-center gap-7 text-gray-50 text-base mr-5 font-sans">
-        <button class=" bg-register_orange text-white rounded-md p-2 font-sans">All</button>
-        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Images</button>
-        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Video</button>
-        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Audio</button>
-        <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Script</button>
+        <a href="/">
+            <button class=" bg-register_orange text-white rounded-md p-2 font-sans">All</button>
+        </a>
+        <a href="/gallery_images">
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Images</button>
+        </a>
+        <a href="/gallery_video">
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Video</button>
+        </a>
+        <a href="/gallery_audio">
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Audio</button>
+        </a>
+        <a href="/gallery_script">
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Script</button>
+        </a>
         
     </ul>
 </div>

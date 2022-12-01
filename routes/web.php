@@ -19,7 +19,15 @@ use App\Http\Controllers\CollectionController;
 */
 
 Route::get('/',[GalleryController::class, 'showGalleryHome'])->name('gallery.home');
+Route::get('/gallery_images',[GalleryController::class, 'showGalleryImagesHome'])->name('gallery.images.home');
+Route::get('/gallery_video',[GalleryController::class, 'showGalleryVideoHome'])->name('gallery.video.home');
+Route::get('/gallery_audio',[GalleryController::class, 'showGalleryAudioHome'])->name('gallery.audio.home');
+Route::get('/gallery_script',[GalleryController::class, 'showGalleryScriptHome'])->name('gallery.script.home');
 Route::get('/home_collection_all',[CollectionController::class, 'showCollectionHome'])->name('collection.home');
+Route::get('/collection_images',[CollectionController::class, 'showCollectionImagesHome'])->name('collection.images.home');
+Route::get('/collection_video',[CollectionController::class, 'showCollectionVideoHome'])->name('collection.video.home');
+Route::get('/collection_audio',[CollectionController::class, 'showCollectionAudioHome'])->name('collection.audio.home');
+Route::get('/collection_script',[CollectionController::class, 'showCollectionScriptHome'])->name('collection.images.home');
 Route::get('/profile',[GalleryController::class, 'showGalleryProfile'])->name('profile');
 Route::get('/profile_collection',[CollectionController::class, 'showCollectionProfile'])->name('profile.collection');
 Route::get('/profile_draft_collection',[CollectionController::class, 'showDraftCollectionProfile'])->name('profile.draft.collection');

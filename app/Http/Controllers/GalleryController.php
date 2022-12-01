@@ -22,8 +22,32 @@ class GalleryController extends Controller
 
     public function showGalleryHome()
     {
-            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->paginate(18);
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);
             return view('welcome',['gallery' => $gallery]);
+    }
+
+    public function showGalleryImagesHome()
+    {
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.categoryGallery','=','image')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);
+            return view('welcome_image',['gallery' => $gallery]);
+    }
+
+    public function showGalleryVideoHome()
+    {
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.categoryGallery','=','video')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);
+            return view('welcome_video',['gallery' => $gallery]);
+    }
+
+    public function showGalleryAudioHome()
+    {
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.categoryGallery','=','audio')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);
+            return view('welcome_audio',['gallery' => $gallery]);
+    }
+
+    public function showGalleryScriptHome()
+    {
+            $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.categoryGallery','=','script')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);
+            return view('welcome_script',['gallery' => $gallery]);
     }
 
     public function showComments(Request $request)

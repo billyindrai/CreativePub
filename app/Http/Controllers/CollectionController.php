@@ -81,6 +81,30 @@ class CollectionController extends Controller
             return view('welcome_collection',['gallery' => $collection]);
     }
 
+    public function showCollectionImagesHome()
+    {
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','image')->paginate(18);
+            return view('welcome_collection_image',['gallery' => $collection]);
+    }
+
+    public function showCollectionVideoHome()
+    {
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','video')->paginate(18);
+            return view('welcome_collection_video',['gallery' => $collection]);
+    }
+
+    public function showCollectionAudioHome()
+    {
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','audio')->paginate(18);
+            return view('welcome_collection_audio',['gallery' => $collection]);
+    }
+
+    public function showCollectionScriptHome()
+    {
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','script')->paginate(18);
+            return view('welcome_collection_script',['gallery' => $collection]);
+    }
+
     public function storeFinalize(Request $request, Collection $collection)
     {
         $request->validate([ 

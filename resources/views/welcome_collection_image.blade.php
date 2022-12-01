@@ -28,10 +28,10 @@
 <div class="container-2xl md:flex justify-center items-center mx-auto">
     <ul class="hidden md:flex flex-1 justify-center items-center gap-7 text-gray-50 text-base mr-5 font-sans">
         <a href="/home_collection_all">
-            <button class=" bg-register_orange text-white rounded-md p-2 font-sans">All</button>
+            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">All</button>
         </a>
         <a href="/collection_images">
-            <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Images</button>
+            <button class=" bg-register_orange text-white rounded-md p-2 font-sans">Images</button>
         </a>
         <a href="/collection_video">
             <button class=" hover:bg-register_orange bg-transparent text-white rounded-md p-2 font-sans">Video</button>
@@ -150,15 +150,7 @@
                     <p class="text-white font-sans text-xs leading-relaxed">tes </p>
                 </div>
                 <div class="container-2xl md:flex flex-1 pb-3 justify-center gap-3">
-                    @if(Auth::check())
-                        @if(Auth::user()->langgananPengguna == TRUE)
-                        <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Download</button>
-                        @else
-                        <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Subscribe Premium to Download</button>
-                        @endif
-                    @else
-                    <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Login to Download</button>
-                    @endif
+                    <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Download</button>
                 </div>
 
 
