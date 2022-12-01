@@ -38,6 +38,13 @@ class GalleryController extends Controller
             return view('welcome_video',['gallery' => $gallery]);
     }
 
+    public function searchGallery(Request $request)
+    {
+        $search = $request->search;
+        $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.draftStatusGallery','=',FALSE)->where('gallery.titleGallery','like',"%".$search."%")->paginate(18);
+        return view('welcome',['gallery' => $gallery]);
+    }
+
     public function showGalleryAudioHome()
     {
             $gallery = Gallery::join('users','gallery.idPengguna','=','users.id')->where('gallery.categoryGallery','=','audio')->where('gallery.draftStatusGallery','=',FALSE)->paginate(18);

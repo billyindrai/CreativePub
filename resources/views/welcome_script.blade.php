@@ -12,7 +12,11 @@
 </div>
 <div class=" container-2xl md:flex justify-center items-center mx-auto">
     <div class="items-center mt-9 mb-3 md:flex justify-center">
-        <input class=" placeholder:text-white bg-search_button rounded-md text-white py-1 px-2 w-64 shadow-md" type="text" placeholder="Search...">
+        <form  method="POST" action="search_gallery">
+            @csrf
+            <input name="search" class=" placeholder:text-white bg-search_button rounded-md text-white py-1 px-2 w-64 shadow-md" type="text" placeholder="Find the content you need...">
+            <button class="bg-register_orange hover:bg-transparent text-white rounded-md p-2 font-sans" type="submit">Search</button>
+        </form>
     </div>
 </div>
 <div class="container-2xl md:flex justify-center ">

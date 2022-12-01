@@ -25,6 +25,11 @@ class AuthenticatedSessionController extends Controller
         return view('/login_page');
     }
 
+    public function showPaymentPage()
+    {
+        return view('/payment_page');
+    }
+
     public function createUpdateProfileGeneral()
     {
         return view('/edit_profile_general');

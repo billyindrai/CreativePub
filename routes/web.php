@@ -34,6 +34,12 @@ Route::get('/profile_draft_collection',[CollectionController::class, 'showDraftC
 Route::get('/profile_draft_gallery',[GalleryController::class, 'showDraftGalleryProfile'])->name('profile.draft.gallery');
 Route::post('/show_comments',[GalleryController::class, 'showComments'])->name('show.comments');
 Route::post('/input_comment',[GalleryController::class, 'storeComments'])->name('store.comments');
+Route::post('/search_gallery',[GalleryController::class, 'searchGallery'])->name('search.gallery');
+Route::post('/search_collection',[CollectionController::class, 'searchCollection'])->name('search.collection');
+Route::get('/payment',[AuthenticatedSessionController::class, 'showPaymentPage'])->name('show.payment.page');
+
+
+
 
 
 Route::get('/edit_profile', function () {

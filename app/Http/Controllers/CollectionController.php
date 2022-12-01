@@ -81,6 +81,13 @@ class CollectionController extends Controller
             return view('welcome_collection',['gallery' => $collection]);
     }
 
+    public function searchCollection(Request $request)
+    {
+        $search = $request->search;
+        $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.draftStatusCollection','=',FALSE)->where('collection.titleCollection','like',"%".$search."%")->paginate(18);
+        return view('welcome_collection',['gallery' => $collection]);
+    }
+
     public function showCollectionImagesHome()
     {
             $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','image')->paginate(18);
