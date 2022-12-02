@@ -88,6 +88,11 @@ class CollectionController extends Controller
         return view('welcome_collection',['gallery' => $collection]);
     }
 
+    public function downloadCollection(Request $request)
+    {   
+        return response()->download(public_path($request->contentPath));
+    }
+
     public function showCollectionImagesHome()
     {
             $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','image')->paginate(18);

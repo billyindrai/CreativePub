@@ -110,50 +110,62 @@
                         </button>     
                     </div>
                 </div>
-                <div id="default-carousel" class="relative rounded-lg" data-carousel="static">
+                @if($g->categoryCollection == 'image' )
+                <div class="relative rounded-lg" data-carousel="static">
                     <!-- Carousel wrapper -->
                     <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                         <!-- Item 1 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800"></span>
                             <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{$g->contentCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
-                        </div>
                     </div>
-                    <!-- Slider indicators -->
-                    <div class="flex absolute bottom-5 mt-3 left-1/2 z-30 space-x-3 -translate-x-1/2">
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                    </div>
-                    <!-- Slider controls -->
-                    <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
-                        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                            <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                            <span class="hidden">Previous</span>
-                        </span>
-                    </button>
-                    <button type="button" class="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
-                        <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                            <svg class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                            <span class="hidden">Next</span>
-                        </span>
-                    </button>
+                    
                 </div>
+                @elseif($g->categoryCollection == 'video')
+                <div class="container-2xl rounded-md">
+                    <video class="rounded-md w-full h-full" controls>
+                        <source src="{{$g->contentCollection}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                @elseif($g->categoryCollection == 'audio')
+                <div class="container-2xl rounded-md">
+                    <video class="rounded-md w-full h-full" controls>
+                        <source src="{{$g->contentCollection}}" type="audio/mp3">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                @elseif($g->categoryCollection == 'script')
+                <div class="relative rounded-lg" data-carousel="static">
+                    <!-- Carousel wrapper -->
+                    <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                        <!-- Item 1 -->
+                            <img src="{{$g->coverCollection}}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                    </div>
+                    
+                </div>
+                @endif
 
                 
                 <div class="container-2xl w-full mx-auto my-3">
-                    <p class="text-white font-sans text-xs leading-relaxed">tes </p>
+                    <p class="text-white font-sans text-xs leading-relaxed">{{$g->descriptionCollection}} </p>
                 </div>
                 <div class="container-2xl md:flex flex-1 pb-3 justify-center gap-3">
-                    <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Download</button>
+                    @if(Auth::check())
+                        @if(Auth::user()->langgananPengguna == TRUE)
+                        <form method="POST" action="/download_collection">
+                            @csrf
+                            <input name="contentPath" type="hidden" value="{{$g->contentCollection}}">
+                            <button type="submit" class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Download</button>
+                        </form>
+                        @else
+                        <a href="/premium">
+                            <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Subscribe Premium to Download</button>
+                         </a>
+                        @endif
+                    @else
+                    <a href="/login">
+                        <button class="bg-register_orange text-white rounded-md p-2 text-base font-medium font-sans">Login to Download</button>
+                    </a>
+                    @endif
                 </div>
 
 

@@ -211,7 +211,9 @@ class GalleryController extends Controller
 
     public function deleteGallery(Request $request, Gallery $gallery)
     {       
+            Komentar::where('idGallery','=',$request->galleryId)->delete();   
             Gallery::where('idGallery','=',$request->galleryId)->delete();        
+            
             return redirect()->route('profile'); 
     }
     

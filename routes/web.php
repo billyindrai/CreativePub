@@ -37,6 +37,8 @@ Route::post('/input_comment',[GalleryController::class, 'storeComments'])->name(
 Route::post('/search_gallery',[GalleryController::class, 'searchGallery'])->name('search.gallery');
 Route::post('/search_collection',[CollectionController::class, 'searchCollection'])->name('search.collection');
 Route::get('/payment',[AuthenticatedSessionController::class, 'showPaymentPage'])->name('show.payment.page');
+Route::post('download_collection',[CollectionController::class, 'downloadCollection'])->name('download.collection');
+
 
 
 
