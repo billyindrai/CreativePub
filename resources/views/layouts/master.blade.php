@@ -21,6 +21,7 @@
 </head>
 
 <body class="antialiased bg-background">
+<script src="../path/to/flowbite/dist/flowbite.js"></script>
     <header class="bg-nav_bar">
         <nav class=" container flex items-center bg-nav_bar py-5 mx-auto">
             <div class=" w-52 ml-5 py-1">
@@ -52,6 +53,9 @@
                         </div>
                     </li>
                     <li>
+                        @if(Auth::user()->langgananPengguna == TRUE)
+                        
+                        @else
                         <a href="/premium">
                             <button class="text-register_orange  bg-white rounded-md p-2 font-sans">
                             <div class="container-2xl md:flex flex-1 justify-center items-center gap-2">
@@ -63,6 +67,7 @@
     
                             </button>
                         </a>
+                        @endif
                     </li>
                     <li>
                         <button class="items-center">

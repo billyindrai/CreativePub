@@ -43,10 +43,11 @@ Route::post('download_collection',[CollectionController::class, 'downloadCollect
 
 
 
-
 Route::get('/edit_profile', function () {
     return view('edit_profile_general');
 });
+
+
 
 Route::get('/edit_profile_social', function () {
     return view('edit_profile_social');

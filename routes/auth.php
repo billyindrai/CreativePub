@@ -60,6 +60,9 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
 });
 
+
+Route::post('/pay_premium', [AuthenticatedSessionController::class, 'pay']);
+Route::post('/payment_finish', [AuthenticatedSessionController::class, 'paymentFinished']);
 Route::post('/edit_profile_general', [AuthenticatedSessionController::class, 'updateProfileGeneral']);
 Route::post('/edit_profile_password', [AuthenticatedSessionController::class, 'updateProfilePassword']);
 Route::post('/edit_profile_social', [AuthenticatedSessionController::class, 'updateProfileSocial']);
@@ -77,6 +80,10 @@ Route::post('/delete_collection', [CollectionController::class, 'deleteCollectio
 Route::get('/edit_collection/{collection}',[CollectionController::class, 'editCollection']);
 Route::post('/edit_collection_no_cover',[CollectionController::class, 'storeEditWithoutCover']);
 Route::post('/edit_collection_cover', [CollectionController::class, 'storeEditFinalize']);
+Route::get('/admin',[AuthenticatedSessionController::class, 'adminShowAccount']);
+Route::post('/delete_account',[AuthenticatedSessionController::class, 'adminDeleteAccount']);
+
+
 
 
 
