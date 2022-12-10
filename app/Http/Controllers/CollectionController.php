@@ -20,6 +20,43 @@ class CollectionController extends Controller
             'fileCollection' => ['required','file'],       
         ]);
         
+        if($request->categoryCollection == 'image'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|image|mimes:jpeg,png,jpg',           
+            ]);
+        } else if ($request->categoryCollection == 'video'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:mp4',           
+            ]);
+        } else if($request->categoryCollection == 'audio'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:mp3',           
+            ]);
+        } else if($request->categoryCollection == 'script'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:pdf',           
+            ]);
+        }
 
         if ($request->hasFile('fileCollection')){
 
@@ -77,14 +114,14 @@ class CollectionController extends Controller
 
     public function showCollectionHome()
     {
-            $collection = Collection::join('users','collection.idPengguna','=','users.id')->paginate(18);
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('draftStatusCollection', '=', FALSE)->paginate(18);
             return view('welcome_collection',['gallery' => $collection]);
     }
 
     public function searchCollection(Request $request)
     {
         $search = $request->search;
-        $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.draftStatusCollection','=',FALSE)->where('collection.titleCollection','like',"%".$search."%")->paginate(18);
+        $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('collection.draftStatusCollection','=',FALSE)->where('collection.titleCollection','like',"%".$search."%")->paginate(18);
         return view('welcome_collection',['gallery' => $collection]);
     }
 
@@ -95,32 +132,32 @@ class CollectionController extends Controller
 
     public function showCollectionImagesHome()
     {
-            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','image')->paginate(18);
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('collection.draftStatusCollection','=',FALSE)->where('collection.categoryCollection','=','image')->paginate(18);
             return view('welcome_collection_image',['gallery' => $collection]);
     }
 
     public function showCollectionVideoHome()
     {
-            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','video')->paginate(18);
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('collection.draftStatusCollection','=',FALSE)->where('collection.categoryCollection','=','video')->paginate(18);
             return view('welcome_collection_video',['gallery' => $collection]);
     }
 
     public function showCollectionAudioHome()
     {
-            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','audio')->paginate(18);
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('collection.draftStatusCollection','=',FALSE)->where('collection.categoryCollection','=','audio')->paginate(18);
             return view('welcome_collection_audio',['gallery' => $collection]);
     }
 
     public function showCollectionScriptHome()
     {
-            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.categoryCollection','=','script')->paginate(18);
+            $collection = Collection::join('users','collection.idPengguna','=','users.id')->where('collection.approvalCollection','=', TRUE)->where('collection.draftStatusCollection','=',FALSE)->where('collection.categoryCollection','=','script')->paginate(18);
             return view('welcome_collection_script',['gallery' => $collection]);
     }
 
     public function storeFinalize(Request $request, Collection $collection)
     {
         $request->validate([ 
-            'collectionCover' => ['required','file'],       
+            'collectionCover' => 'required|image|mimes:jpeg,png,jpg',       
         ]);
 
         
@@ -183,13 +220,43 @@ class CollectionController extends Controller
 
     public function storeEditWithoutCover(Request $request, Collection $collection)
     {
-        $request->validate([
-            'titleCollection' => ['required', 'string'],            
-            'toolsCollection' => ['required', 'string'], 
-            'categoryCollection' => ['required', 'string'],  
-            'descriptionCollection' => ['required', 'string'],  
-            'tagsCollection' => ['required', 'string'],          
-        ]);
+        if($request->categoryCollection == 'image'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|image|mimes:jpeg,png,jpg',           
+            ]);
+        } else if ($request->categoryCollection == 'video'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:mp4',           
+            ]);
+        } else if($request->categoryCollection == 'audio'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:mp3',           
+            ]);
+        } else if($request->categoryCollection == 'script'){
+            $request->validate([
+                'titleCollection' => ['required', 'string'],            
+                'toolsCollection' => ['required', 'string'], 
+                'categoryCollection' => ['required', 'string'],  
+                'descriptionCollection' => ['required', 'string'],  
+                'tagsCollection' => ['required', 'string'],
+                'fileCollection' => 'required|mimes:pdf',           
+            ]);
+        }
 
       
         if ($request->hasFile('fileCollection')){
@@ -258,7 +325,7 @@ class CollectionController extends Controller
     public function storeEditFinalize(Request $request, Collection $collection)
     {
         $request->validate([ 
-            'collectionCover' => ['required','file'],       
+            'collectionCover' => 'required|image|mimes:jpeg,png,jpg',       
         ]);
 
         

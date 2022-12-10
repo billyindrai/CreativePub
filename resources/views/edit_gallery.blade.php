@@ -13,12 +13,18 @@
             <div class="container-2xl w-1/2 h-80">
                 <label for="fileGallery" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="items-center pt-5 pb-6">
-                        <p class="text-white text-center font-medium text-xl mb-9">Edit your content</p>
+                        <p class="text-black text-center font-medium text-xl mb-9">Edit your content</p>
                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                     </div>
                     <input name="fileGallery" id="fileGallery" type="file" class="hidden" />
                 </label>
+                <div id="error" class="container-2xl md:flex flex-1 mt-4 justify-center" role="alert">
+                    @if ($errors->has('fileGallery'))
+                    <div class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                        <span class="font-medium">{{ $errors->first('fileGallery') }}</span> 
+                    </div>
+                    @endif      
+                </div>
             </div>
             
             <div class="container-2xl md:flex flex-1 justify-center px-44">
@@ -29,7 +35,7 @@
                     </div>
                     <div class="container mt-4">
                         <p class="text-white text-xl font-semibold ">Tools Used</p>
-                            <select class="bg-white rounded-lg w-80 h-10 mt-2" name="toolsGallery" id="toolsGallery" form="galleryForm" value="{{$g->toolsGallery}}" required>
+                            <select class="bg-white rounded-lg w-80 h-10 mt-2" name="toolsGallery" id="toolsGallery" form="galleryForm" required>
                                 <option value="Photoshop">Photoshop</option>
                                 <option value="Audition">Audition</option>
                                 <option value="Aftereffect">After Effect</option>
@@ -41,8 +47,7 @@
                     </div>
                     <div class="container-2xl mt-4">
                         <p class="text-white text-xl font-semibold ">Category</p>
-                        <select class="bg-white rounded-lg w-10/12 h-10 mt-2" name="categoryGallery" id="categoryGallery" placeholder="{{$g->categoryGallery}}" form="galleryForm" required>
-                            <option value="" disabled selected>{{$g->categoryGallery}}</option>
+                        <select class="bg-white rounded-lg w-10/12 h-10 mt-2" name="categoryGallery" id="categoryGallery" form="galleryForm" required>
                             <option value="image">Image</option>
                             <option value="video">Video</option>
                             <option value="audio">Audio</option>
@@ -63,7 +68,7 @@
         </div>
         <div class="container-2xl md:flex mt-16 pb-5 justify-center">            
             <button id="button" name="button" value="draft"  class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium mr-32">Save as Draft</button>
-            <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium"  data-modal-toggle="continueGalleryModal">Continue</button>
+            <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Continue</button>
         </div>
 
     </form>
@@ -71,7 +76,7 @@
         <div id="continueGalleryModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
             <div id="galleryModal" class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
                 <!-- <form method="POST" action="{{url('upload_gallery_no_cover')}}" id="galleryCoverForm" enctype="multipart/form-data">
-                    <input type="hidden" id="galleryId" value="{{ @csrf_token() }}">
+                    <input type="hidden" id="galleryId" value="{{ @csrf_token() }}">    
                     <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
                         <div class="container border-dashed border-2 w-full h-80 border-white rounded-md flex items-center mt-6">
                             <div class="container">
@@ -194,7 +199,6 @@
                                                 '<label for="galleryCover" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">'+
                                                     '<div class="items-center pt-5 pb-6">'+
                                                         '<p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>'+
-                                                        '<p class="text-xs text-gray-500 dark:text-gray-400"> PNG or JPG(MAX. 800x400px)</p>'+
                                                     '</div>'+
                                                     '<input name="galleryCover" id="galleryCover" type="file" class="hidden" />'+
                                                 '</label>'+
@@ -216,7 +220,30 @@
                         '</form>';
                         
                         $('#galleryModal').html(htmlCode);
+                        const targetEl = document.getElementById('continueGalleryModal');
+                        const options = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
                         }
+                        };
+                        const modal = new Modal(targetEl, options);
+                        modal.show();
+                        },
+                    error:function(response)
+                    {
+                      var errorMsg = '<span  class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium">' + response.responseJSON.errors.fileGallery+'</span>';
+                      $('#error').html(errorMsg); 
+                    console.log(response);
+                    }
             });
         })
     })

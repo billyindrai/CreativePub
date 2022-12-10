@@ -2,10 +2,12 @@
 @section('title','Upload Job | Creative Pub')
 @section('content')
 
+
 <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">RECRUIT CREATOR YOU NEEDED</p>
 
         <form method="POST" action="/upload_job" id="jobForm">
             @csrf
+            <input type="hidden" id="token" value="{{ @csrf_token() }}">
             <div class="container-2xl md:flex justify-center">
                 <div class="container w-fit">
                     <div class="container">
@@ -56,7 +58,7 @@
             </div>
             <div class="md:flex justify-center mt-16 ">
                 <div>
-                    <button id="button" name="button" value="publish" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium" data-modal-toggle="uploadJobModal">Publish Now</button>
+                    <button id="button" name="button" value="publish" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Publish Now</button>
                 </div>
             </div>
             <div class="md:flex justify-center mt-6">
@@ -66,7 +68,9 @@
             </div>
         </form>
 
-<div id="uploadJobModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+<div id="uploadJobModal" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full ">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
             <div class="relative container md:flex justify-center flex-1 p-4 w-full max-w-2xl h-full md:h-auto ">
                 <div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">
                     
@@ -82,12 +86,83 @@
                         </p>
                         
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="uploadJobModal">Done</button>  
+                            <a href="/posted_jobs">
+                                <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10">Done</button>  
+                            </a>
                         </div>
 
                   
                 </div>
                 
             </div>
+        </div>       
+    </div>
+            
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#jobForm button").click(function(e){
+            if ($(this).attr("value") == "publish") {            
+                $("#jobForm").submit(function(e){
+                    e.preventDefault();
+                });
+                var formData = new FormData();
+                formData.append('titleJob', $('#titleJob').val());
+                formData.append('toolsJob', $('#toolsJob').val());
+                formData.append('categoryJob', $('#categoryJob').val());
+                formData.append('descriptionJob', $('#descriptionJob').val());
+                formData.append('tagsJob', $('#tagsJob').val());
+                formData.append('dueDateJob', $('#dueDateJob').val());
+                formData.append('button', 'publish');
+            } else if ($(this).attr("value") == "draft") {
+                var formData = new FormData();
+                formData.append('titleJob', $('#titleJob').val());
+                formData.append('toolsJob', $('#toolsJob').val());
+                formData.append('categoryJob', $('#categoryJob').val());
+                formData.append('descriptionJob', $('#descriptionJob').val());
+                formData.append('tagsJob', $('#tagsJob').val());
+                formData.append('dueDateJob', $('#dueDateJob').val());
+                formData.append('button', 'draft');
+                return;
+            }       
+            
+
+          
+
+            // Don't use serialize here, as it is used when we want to send the data of entire form in a query string way and that will not work for file upload
+
+            $.ajax({
+                url: '/upload_job',
+                method: 'post',
+                data: formData,
+                contentType : false,
+                processData : false,
+                headers: {
+                    'X-CSRF-TOKEN': $("#token").val()
+                },
+                success: function(response){
+                    const targetEl = document.getElementById('uploadJobModal');
+                    const options = {
+                    placement: 'center',
+                    backdrop: 'dynamic',
+                    backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                    onHide: () => {
+                        console.log('modal is hidden');
+                    },
+                    onShow: () => {
+                        console.log('modal is shown');
+                    },
+                    onToggle: () => {
+                        console.log('modal has been toggled');
+                    }
+                    };
+                    const modal = new Modal(targetEl, options);
+                    modal.show();
+                    
+                        }
+            });
+        })
+    })
+</script>
 @endsection

@@ -6,34 +6,39 @@
 <div class="container-2xl md:flex flex-1 justify-center items-center">
 
     <div class="container-2xl m-8 w-auto">
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="admin">
-                <p class="font-sans my-2 text-lg font-semibold text-white "> Account</p>
+        <div class="container-2xl bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin">
+                <p class=" font-sans my-2 text-lg font-semibold text-white "> Account</p>
             </a>
         </div>
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="">
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center  md:flex flex-1 ">
+            <a  href="/admin_job">
                 <p class="font-sans my-2 text-lg font-semibold text-white "> Job</p>
             </a>
         </div>
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="">
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin_collection">
                 <p class="font-sans my-2 text-lg font-semibold text-white "> Collection</p>
             </a>
         </div>
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="">
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin_gallery">
                 <p class="font-sans my-2 text-lg font-semibold text-white "> Gallery</p>
             </a>
         </div>
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="">
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin_approval">
                 <p class="font-sans my-2 text-lg font-semibold text-white "> Approval</p>
             </a>
         </div>
-        <div class="container-2xl md:flex flex-1 ">
-            <a  href="">
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin_monetize">
                 <p class="font-sans my-2 text-lg font-semibold text-white "> Monetize</p>
+            </a>
+        </div>
+        <div class="container-2xl hover:bg-register_orange rounded-lg justify-center md:flex flex-1 ">
+            <a  href="/admin_premium">
+                <p class="font-sans my-2 text-lg font-semibold text-white "> Premium Request</p>
             </a>
         </div>
         
@@ -41,10 +46,16 @@
     </div>
 
     <div class="container-2xl py-5 ">
-        <div class="container-2xl md:flex flex-1  py-2 mt-5 h-fit mx-48 gap-5">
-            <input class=" placeholder:text-gray_font bg-white rounded-md text-white py-2 px-2 w-9/12 shadow-md text-xs" type="text" placeholder="Search...">
-               
-        </div>
+        
+            <form method="POST" action="/search_user">
+                @csrf
+                <div class="container-2xl md:flex flex-1  py-2 mt-5 h-fit gap-5">
+                    <input name="keywordSearch" class=" placeholder:text-gray_font bg-white rounded-md text-black py-2 px-2 w-9/12 shadow-md text-xs" type="text" placeholder="Search...">
+                    <button type="submit" class=" bg-register_orange hover:bg-orange-700 text-white rounded-md p-2 font-sans">Search</button>  
+                </div>
+            </form>
+            
+       
         @if (session('status'))
         <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
             {{session('status')}}

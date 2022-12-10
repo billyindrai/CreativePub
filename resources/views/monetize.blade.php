@@ -13,8 +13,8 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono Sucipto</p>
-                <p class="font-sans text-xs font-light text-white"> Digital Artist</p>
+                <p class="font-sans text-xl font-bold text-white"> {{Auth::user()->name}}</p>
+                <p class="font-sans text-xs font-light text-white"> {{Auth::user()->penggunaProfession}}</p>
             </div>
         </div>
         <div class="container-2xl md:flex flex-1 pt-4">
@@ -25,19 +25,19 @@
             </div>
             <div class="container-2xl md:flex flex-1 justify-end">
                 <p class="font-sans text-gray_font">
-                    X * Rp XXXXXXX
+                    {{$countCollection}} x Rp {{$basicMonetize}}
                 </p>
             </div>    
         </div>
         <div class="container-2xl md:flex flex-1 pt-4">
             <div class="container-2xl md:flex flex-1 justify-start">
                 <p class="font-sans text-gray_font">
-                    Tax
+                    Tax (10%)
                 </p>
             </div>
             <div class="container-2xl md:flex flex-1 justify-end">
                 <p class="font-sans text-gray_font">
-                    Rp XXXXXXX
+                    Rp {{$taxMonetize}}
                 </p>
             </div>    
         </div>
@@ -49,12 +49,17 @@
             </div>
             <div class="container-2xl md:flex flex-1 justify-end">
                 <p class="font-sans text-white font-bold">
-                    Rp XXXXXXX
+                    Rp {{$totalMonetize}}
                 </p>
             </div>    
         </div>
         <div class="container-2xl py-3">
-            <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="monetizeModal">Withdraw</button>
+            <form id="monetizeForm" method="POST" action="/withdraw_monetize">
+                @csrf
+                <input type="hidden" id="token" value="{{ @csrf_token() }}">
+                <input type="hidden" id="amountMonetize" name="amountMonetize" value="{{$totalMonetize}}">
+                <button type="submit" class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="monetizeModal">Withdraw</button>
+            </form>
         </div>
     </div>
 </div>
@@ -71,13 +76,15 @@
                         </div>
                         
                         <p class="font-sans font-normal text-white text-lg text-center">
-                            Monetize successfully!
+                            Monetize request successfully sent!
                         </p>
                         <p class="font-sans font-normal text-white text-lg text-center">
-                            Please check your email!
+                            Please check your bank account periodically!
                         </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="monetizeModal">Done</button>  
+                            <a href="/">
+                                <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="monetizeModal">Done</button>  
+                            </a>
                         </div>
 
                   
@@ -86,6 +93,21 @@
             </div>
 </div>
 
+<script>
+    $(document).ready(function(){
+        $("#monetizeForm").submit(function(e){
+            e.preventDefault();
+            let url = $(this).attr('action');
 
+            $.post(url, {
+                '_token': $("#token").val(),
+                amountMonetize: $("#amountMonetize").val()
+            }, function(response){
+                
+            });
+            
+        })
+    })
+</script>
 
 @endsection

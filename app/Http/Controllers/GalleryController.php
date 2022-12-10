@@ -80,14 +80,45 @@ class GalleryController extends Controller
 
     public function storeWithoutCover(Request $request, Gallery $gallery)
     {
-        $request->validate([
-            'titleGallery' => ['required', 'string'],            
-            'toolsGallery' => ['required', 'string'], 
-            'categoryGallery' => ['required', 'string'],  
-            'descriptionGallery' => ['required', 'string'],  
-            'tagsGallery' => ['required', 'string'],    
-            'fileGallery' => ['required','file'],       
-        ]);
+        
+
+        if($request->categoryGallery == 'image'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|image|mimes:jpeg,png,jpg',           
+            ]);
+        } else if ($request->categoryGallery == 'video'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:mp4',           
+            ]);
+        } else if($request->categoryGallery == 'audio'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:mp3',           
+            ]);
+        } else if($request->categoryGallery == 'script'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:pdf',           
+            ]);
+        }
 
         // $data = request()->validate([
         //     'titleGallery' => 'required',
@@ -155,7 +186,7 @@ class GalleryController extends Controller
     public function storeFinalize(Request $request, Gallery $gallery)
     {
         $request->validate([ 
-            'galleryCover' => ['required','file'],       
+            'galleryCover' => 'required|image|mimes:jpeg,png,jpg',       
         ]);
 
         
@@ -214,7 +245,7 @@ class GalleryController extends Controller
             Komentar::where('idGallery','=',$request->galleryId)->delete();   
             Gallery::where('idGallery','=',$request->galleryId)->delete();        
             
-            return redirect()->route('profile'); 
+            return redirect('/profile'); 
     }
     
     public function editGallery(Request $request)
@@ -225,13 +256,43 @@ class GalleryController extends Controller
 
     public function storeEditWithoutCover(Request $request, Gallery $gallery)
     {
-        $request->validate([
-            'titleGallery' => ['required', 'string'],            
-            'toolsGallery' => ['required', 'string'], 
-            'categoryGallery' => ['required', 'string'],  
-            'descriptionGallery' => ['required', 'string'],  
-            'tagsGallery' => ['required', 'string'],          
-        ]);
+        if($request->categoryGallery == 'image'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|image|mimes:jpeg,png,jpg',           
+            ]);
+        } else if ($request->categoryGallery == 'video'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:mp4',           
+            ]);
+        } else if($request->categoryGallery == 'audio'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:mp3',           
+            ]);
+        } else if($request->categoryGallery == 'script'){
+            $request->validate([
+                'titleGallery' => ['required', 'string'],            
+                'toolsGallery' => ['required', 'string'], 
+                'categoryGallery' => ['required', 'string'],  
+                'descriptionGallery' => ['required', 'string'],  
+                'tagsGallery' => ['required', 'string'],
+                'fileGallery' => 'required|mimes:pdf',           
+            ]);
+        }
 
       
         if ($request->hasFile('fileGallery')){
@@ -302,7 +363,7 @@ class GalleryController extends Controller
     public function storeEditFinalize(Request $request, Gallery $gallery)
     {
         $request->validate([ 
-            'galleryCover' => ['required','file'],       
+            'galleryCover' => 'required|image|mimes:jpeg,png,jpg',       
         ]);
 
         

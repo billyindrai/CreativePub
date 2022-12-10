@@ -4,35 +4,17 @@
 
 <div class="container-2xl py-5 mx-auto">
     <div class="container-2xl md:flex flex-1  py-2 mt-5 h-fit mx-48 gap-5">
-        <input class=" placeholder:text-gray_font bg-white rounded-md text-white py-2 px-2 w-9/12 shadow-md text-xs" type="text" placeholder="Search...">
-        <div class="container-2xl md:flex flex-1 gap-5 justify-end">
-            <button class="text-dark_font  bg-white rounded-md p-2 font-sans">
-                <div class="container-2xl md:flex flex-1 justify-center items-center gap-2">
-                    <p class="font-sans font-medium text-xs "> All Category</p>
-                    <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.96973 7.60198C4.26262 7.244 4.7375 7.244 5.03039 7.60198L9.00006 12.4538L12.9697 7.60198C13.2626 7.244 13.7375 7.244 14.0304 7.60198C14.3233 7.95996 14.3233 8.54036 14.0304 8.89834L9.53039 14.3983C9.2375 14.7563 8.76262 14.7563 8.46973 14.3983L3.96973 8.89834C3.67684 8.54036 3.67684 7.95996 3.96973 7.60198Z" fill="#18191F"/>
-                    </svg>
-                </div>
-            </button>
-            <button class="text-dark_font  bg-white rounded-md p-2 font-sans">
-                <div class="container-2xl md:flex flex-1 justify-center items-center gap-2">
-                    <p class="font-sans font-medium text-xs "> Newest</p>
-                    <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.96973 7.60198C4.26262 7.244 4.7375 7.244 5.03039 7.60198L9.00006 12.4538L12.9697 7.60198C13.2626 7.244 13.7375 7.244 14.0304 7.60198C14.3233 7.95996 14.3233 8.54036 14.0304 8.89834L9.53039 14.3983C9.2375 14.7563 8.76262 14.7563 8.46973 14.3983L3.96973 8.89834C3.67684 8.54036 3.67684 7.95996 3.96973 7.60198Z" fill="#18191F"/>
-                    </svg>
-                </div>
-            </button>
-        </div>    
+        <form class="container-2xl md:flex flex-1 gap-3 justify-center" method="GET" action="/search_draft_job">
+            <input name="search" class=" placeholder:text-gray_font bg-white rounded-md text-black py-2 px-2 w-4/12 shadow-md text-xs" type="text" placeholder="Search...">
+            <button type="submit" class="bg-register_orange font-sans text-sm text-white w-28 rounded-md h-full font-medium">Search</button>
+        </form>        
     </div>
-    <div class="container-2xl md:flex flex-1 rounded-t-md py-4 mt-5 mx-48 bg-line_cream">
-        <div>
-            <p class="ml-5 font-sans text-xs text-black">1 - 20 of {{count($jobs)}} Jobs</p>
-        </div>
-        <ul class="hidden md:flex flex-1 justify-end items-center gap-7 text-black text-xs mr-5 font-sans">
-            <li class="cursor-pointer hover:text-register_orange">Show 20 rows</li>
-            <li class="cursor-pointer hover:text-register_orange">Prev</li>
-            <li class="cursor-pointer hover:text-register_orange">Next</li>
-        </ul>
+    <div class="container-2xl md:flex flex-1 rounded-t-md py-4 mt-5 mx-48 justify-center gap-3 bg-line_cream">
+    @if(isset($search))
+    {!! $jobs->appends(['search' => $search])->render() !!}
+    @else
+    {{$jobs->links()}}
+    @endif
     </div>
 
     @foreach ($jobs as $j) 

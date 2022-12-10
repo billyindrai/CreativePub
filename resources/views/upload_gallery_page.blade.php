@@ -2,20 +2,30 @@
 @section('title','Upload Gallery | Creative Pub')
 @section('content')
 <p class="text-register_orange font-sans font-bold text-2xl text-center mt-6 mb-10">WHAT ARE YOU WORKING ON?</p>
+                    
 
     <form method="POST" action="/upload_gallery_no_cover" id="galleryForm" enctype="multipart/form-data">
     @csrf
     <div class="container-2xl md:flex grid grid-cols-2 px-32">
     <input type="hidden" id="token" value="{{ @csrf_token() }}">
+                    
+                
             <div class="container-2xl w-1/2 h-80">
+                     
                 <label for="fileGallery" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="items-center pt-5 pb-6">
-                        <p class="text-white text-center font-medium text-xl mb-9">Upload your content</p>
+                        <p class="text-black text-center font-medium text-xl mb-9">Upload your content</p>
                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                     </div>
                     <input name="fileGallery" id="fileGallery" type="file" class="hidden" />
                 </label>
+                <div id="error" class="container-2xl md:flex flex-1 mt-4 justify-center" role="alert">
+                    @if ($errors->has('fileGallery'))
+                    <div class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                        <span class="font-medium">{{ $errors->first('fileGallery') }}</span> 
+                    </div>
+                    @endif      
+                </div>
             </div>
             
             <div class="container-2xl md:flex flex-1 justify-center px-44">
@@ -59,7 +69,7 @@
         </div>
         <div class="container-2xl md:flex mt-16 pb-5 justify-center">            
             <button id="button" name="button" value="draft"  class="bg-white rounded-lg w-80 h-10 text-register_orange text-base font-medium mr-32">Save as Draft</button>
-            <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium"  data-modal-toggle="continueGalleryModal">Continue</button>
+            <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-80 h-10 text-white text-base font-medium">Continue</button>
         </div>
 
     </form>
@@ -152,6 +162,7 @@
                 },
                 success: function(response){
                     // Do what ever you want to do on sucsess
+                    
                     var htmlCode = "";
 
                         htmlCode  = '<form method="POST" action="/upload_gallery_cover" id="galleryCoverForm" enctype="multipart/form-data">' +
@@ -159,19 +170,17 @@
                             '<input type="text" name="galleryId" id="galleryId" value="'+response.idGallery+'"class="hidden">' +
                             '<div class="container-2xl py-16 px-36 items-center bg-zinc-800 rounded-lg">' +
                                     '<div class="container">'+
-                                        '<p class="text-white text-center font-medium px-8 text-xl mb-9">Upload your Collection Cover</p>' +
+                                        '<p class="text-white text-center font-medium px-8 text-xl mb-9">Upload your Gallery Cover</p>' +
                                         '<div class="container md:flex justify-center">'+
                                             '<div class="container-2xl w-1/2 h-80">'+
                                                 '<label for="galleryCover" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">'+
                                                     '<div class="items-center pt-5 pb-6">'+
                                                         '<p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>'+
-                                                        '<p class="text-xs text-gray-500 dark:text-gray-400"> PNG or JPG(MAX. 800x400px)</p>'+
                                                     '</div>'+
                                                     '<input name="galleryCover" id="galleryCover" type="file" class="hidden" />'+
                                                 '</label>'+
                                             '</div>'+
                                         '</div>'+
-                                        '<p class="text-white font-light text-base pt-2 text-center">Minimum size of "214px x 212px"</p>'+
                                     '</div>'+
                                 '<div class="container-2xl pt-5 md:flex flex-1 items-center gap-3">'+
                                     '<input type="checkbox" class="bg-transparent default:ring-2 w-4 h-4" required>'+
@@ -187,7 +196,30 @@
                         '</form>';
                         
                         $('#galleryModal').html(htmlCode);
+                        const targetEl = document.getElementById('continueGalleryModal');
+                        const options = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
                         }
+                        };
+                        const modal = new Modal(targetEl, options);
+                        modal.show();
+                        },
+                    error:function(response)
+                    {
+                      var errorMsg = '<span  class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium">' + response.responseJSON.errors.fileGallery+'</span>';
+                      $('#error').html(errorMsg); 
+                    console.log(response);
+                    }
             });
         })
     })

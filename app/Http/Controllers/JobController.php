@@ -24,15 +24,22 @@ class JobController extends Controller
 
     public function index()
     {
-            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->get();
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->paginate(5);
             return view('jobs',['jobs' => $jobs]);
     }
 
     public function indexDraftJob()
     {
-            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',TRUE)->where('job.idPengguna','=', Auth::user()->id)->get();
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',TRUE)->where('job.idPengguna','=', Auth::user()->id)->paginate(5);
             // $jobs->created_at = date('Y-m-d', $jobs->created_at);
             return view('draft_jobs',['jobs' => $jobs]);
+    }
+
+    public function searchDraftJobs(Request $request, Job $job)
+    {
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',TRUE)->where('job.idPengguna','=', Auth::user()->id)->where('job.titleJob','like',"%".$request->search."%")->paginate(5);         
+        
+            return view('draft_jobs',['jobs' => $jobs, 'search' => $request->search]);
     }
 
     public function indexDetailJob(Request $request, Job $job)
@@ -51,17 +58,53 @@ class JobController extends Controller
 
     public function indexPostedJobs(Request $request, Job $job)
     {
-            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','=', Auth::user()->id)->select('users.name','users.penggunaLocation','job.*')->get();
-            $jobsDetail = array();
-            $i = 0;
-            foreach($jobs as $j){
-                $jobsDetail[$i] = MyJob::where('idJob','=',$j->idJob)->get();
-                $i = $i + 1;
-            };
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','=', Auth::user()->id)->select('users.name','users.penggunaLocation','job.*')->paginate(5);
+            // $jobsDetail = array();
+            // $i = 0;
+            // foreach($jobs as $j){
+            //     $jobsDetail[$i] = MyJob::where('idJob','=',$j->idJob)->get();
+            //     $i = $i + 1;
+            // };
             // $jobsDetail = MyJob::where('idJob','=',3)->get();
         
-            return view('posted_jobs',['jobs' => $jobs, 'jobsDetail' => $jobsDetail]);
+            return view('posted_jobs',['jobs' => $jobs]);
     }
+
+    public function searchPostedJobs(Request $request, Job $job)
+    {
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','=', Auth::user()->id)->where('job.titleJob','like',"%".$request->search."%")->select('users.name','users.penggunaLocation','job.*')->paginate(5);
+            // $jobsDetail = array();
+            // $i = 0;
+            // foreach($jobs as $j){
+            //     $jobsDetail[$i] = MyJob::where('idJob','=',$j->idJob)->get();
+            //     $i = $i + 1;
+            // };
+            // $jobsDetail = MyJob::where('idJob','=',3)->get();
+        
+            return view('posted_jobs',['jobs' => $jobs, 'search' => $request->search]);
+    }
+
+    public function searchJobs(Request $request, Job $job)
+    {
+            $jobs = Job::join('users','job.idPengguna','=','users.id')->where('job.draftStatusJob','=',FALSE)->where('job.idPengguna','!=', Auth::user()->id)->where('job.titleJob','like',"%".$request->search."%")->select('users.name','users.penggunaLocation','job.*')->paginate(5);
+            // $jobsDetail = array();
+            // $i = 0;
+            // foreach($jobs as $j){
+            //     $jobsDetail[$i] = MyJob::where('idJob','=',$j->idJob)->get();
+            //     $i = $i + 1;
+            // };
+            // $jobsDetail = MyJob::where('idJob','=',3)->get();
+        
+            return view('jobs',['jobs' => $jobs, 'search' => $request->search]);
+    }
+
+    public function searchMyJobs(Request $request, Job $job)
+    {
+        $jobs = Job::join('my_jobs','job.idJob','=','my_jobs.idJob')->join('users','job.idPengguna','=','users.id')->where('my_jobs.idPengguna','=',Auth::user()->id)->where('job.titleJob','like',"%".$request->search."%")->paginate(5);
+        
+        return view('my_jobs',['jobs' => $jobs, 'search' => $request->search]);
+    }
+
     public function showApplicantsPostedJobs(Request $request)
     {
             $myJobs = MyJob::join('users','my_jobs.idPengguna','=','users.id')->where('my_jobs.idJob','=', $request->jobId)->where('my_jobs.statusMyJobs','=','Waiting')->get();
@@ -80,7 +123,7 @@ class JobController extends Controller
 
     public function indexMyJobs(Request $request, Job $job)
     {
-            $jobs = Job::join('my_jobs','job.idJob','=','my_jobs.idJob')->join('users','job.idPengguna','=','users.id')->where('my_jobs.idPengguna','=',Auth::user()->id)->get();
+            $jobs = Job::join('my_jobs','job.idJob','=','my_jobs.idJob')->join('users','job.idPengguna','=','users.id')->where('my_jobs.idPengguna','=',Auth::user()->id)->paginate(5);
         
             return view('my_jobs',['jobs' => $jobs]);
     }
@@ -231,7 +274,7 @@ class JobController extends Controller
                                     'descriptionJob' => $request->descriptionJob,
                                     'finishStatusJob' => FALSE,
                                     ]);
-                return redirect()->route('show_posted_jobs');  
+                return response()->json();  
                 break;
     
             case 'draft':

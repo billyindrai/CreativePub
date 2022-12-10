@@ -25,19 +25,7 @@
                 PREMIUM
             </p>
         </div>
-        <div class="container-2xl md:flex flex-1 pr-7 pl-4 py-5">
-            <div class="container-2xl md:flex flex-1 justify-start">
-                <p class="font-sans text-white font-medium text-base">Free Collection</p>
-            </div>
-            <div class="container-2xl md:flex flexx-1 justify-end gap-12">
-                <svg width="30" height="23" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.0003 17.95L3.05026 11L0.683594 13.35L10.0003 22.6667L30.0003 2.66665L27.6503 0.31665L10.0003 17.95Z" fill="#FF8A00"/>
-                </svg>
-                <svg width="30" height="23" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.0003 17.95L3.05026 11L0.683594 13.35L10.0003 22.6667L30.0003 2.66665L27.6503 0.31665L10.0003 17.95Z" fill="#FF8A00"/>
-                </svg>
-            </div>
-        </div>
+        
         <div class="container-2xl md:flex flex-1 pr-7 pl-4 py-5">
             <div class="container-2xl md:flex flex-1 justify-start">
                 <p class="font-sans text-white font-medium text-base">Premium Collection</p>

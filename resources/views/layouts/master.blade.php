@@ -80,10 +80,19 @@
                                 <a href="/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-content_box">
                                 <div class="container-2xl md:flex flex-1 p-2 items-center">
                                     <img class="rounded-full object-cover w-10 h-10" data-dropdown-toggle="dropdownProfile" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
+                                    
+                                    @if(Auth::user()->langgananPengguna == TRUE)
+                                    <div class="container-2xl px-3 gap-2">
+                                        <p class="font-sans text-lg font-medium">{{Auth::user()->name}}</p>
+                                        <p class="font-sans text-sm font-normal">{{Auth::user()->email}}</p>
+                                        <p class="font-sans text-sm font-normal text-register_orange ">Premium</p>
+                                    </div>
+                                    @else
                                     <div class="container-2xl px-3 gap-2">
                                         <p class="font-sans text-lg font-medium">{{Auth::user()->name}}</p>
                                         <p class="font-sans text-sm font-normal">{{Auth::user()->email}}</p>
                                     </div>
+                                    @endif
                                 </div>
                                 </a>
                             </li>

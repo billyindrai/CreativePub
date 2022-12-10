@@ -15,12 +15,10 @@ use App\Models\Gallery;
 use App\Models\Collection;
 use App\Models\Job;
 use App\Models\MyJob;
-
-
-
-
+use App\Models\Monetize;
 use App\Models\BankAccount;
 use App\Models\PaymentInformation;
+use App\Models\PremiumRequest;
 use App\Models\Komentar;
 
 
@@ -56,11 +54,22 @@ class AuthenticatedSessionController extends Controller
         $order = NULL;
         if($request->radio == 480000){
             $order = '1 YEAR';
+            User::where('id','=', Auth::user()->id )->update([
+                'premiumPackage' => $order,
+                ]); 
         } else if($request->radio == 300000){
             $order = '6 Months';
+            User::where('id','=', Auth::user()->id )->update([
+                'premiumPackage' => $order,
+                ]); 
         } else {
             $order = '1 Month';
+            User::where('id','=', Auth::user()->id )->update([
+                'premiumPackage' => $order,
+                ]); 
         }
+
+        
 
         return view('/payment_page_confirmation',['name' => $request->namaBilling, 'address'=> $request->addressPayment, 'order' => $order, 'total' => $request->radio]);
     }
@@ -72,9 +81,11 @@ class AuthenticatedSessionController extends Controller
 
     public function paymentFinished()
     {
-        User::where('id','=', Auth::user()->id )->update([
-            'langgananPengguna' => TRUE,
-            ]);   
+        PremiumRequest::create([
+            'statusPremiumRequest' => FALSE,
+            'idPengguna' => Auth::user()->id,
+
+            ]);
     }
 
     public function adminShowAccount()
@@ -82,6 +93,87 @@ class AuthenticatedSessionController extends Controller
         if(Auth::user()->isAdmin == TRUE){
             $allUser = User::paginate(5);
             return view('/admin',['user' => $allUser]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowJob()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allJob = Job::join('users','job.idPengguna','=','users.id')->paginate(5);
+            return view('/admin_job',['job' => $allJob]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowRequest()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allRequest = PremiumRequest::join('users','premium_request.idPengguna','=','users.id')->paginate(5);
+            return view('/admin_premium',['request' => $allRequest]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminConfirmRequest(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            PremiumRequest::where('idPremiumRequest', '=', $request->requestId)->update(['statusPremiumRequest' => TRUE]);
+            User::where('id', '=', $request->userId)->update(['langgananPengguna' => TRUE]);
+            return redirect('/admin_premium');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowCollection()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allCollection = Collection::paginate(5);
+            return view('/admin_collection',['collection' => $allCollection]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowGallery()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allGallery = Gallery::paginate(5);
+            return view('/admin_gallery',['gallery' => $allGallery]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowApproval()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allCollection = Collection::where('approvalCollection', '=', FALSE)->paginate(5);
+            return view('/admin_approval',['collection' => $allCollection]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminShowMonetize()
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            $allMonetize = Monetize::join('users','monetize.idPengguna','=','users.id')->join('bank_account', 'users.idBankAccount', '=', 'bank_account.idBankAccount')->paginate(5);
+            return view('/admin_monetize',['monetize' => $allMonetize]);
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminFinishMonetize(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            Monetize::where('idMonetize', '=', $request->monetizeId)->update(['monetizeStatus' => TRUE]);
+            return redirect('/admin_monetize');
         } else {
             return redirect('/');
         }
@@ -106,6 +198,105 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
+    public function adminDeleteJob(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            MyJob::where('idJob','=',$request->jobId)->delete();
+            Job::where('idJob','=',$request->jobId)->delete();
+            return redirect('/admin_job')->with('status','Data job berhasil dihapus!');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminDeleteCollection(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            Collection::where('idCollection','=',$request->collectionId)->delete();
+            return redirect('/admin_collection')->with('status','Data collection berhasil dihapus!');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminDeleteGallery(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            Komentar::where('idGallery','=',$request->galleryId)->delete();   
+            Gallery::where('idGallery','=',$request->galleryId)->delete();
+            return redirect('/admin_gallery')->with('status','Data gallery berhasil dihapus!');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminDeleteApproval(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            Collection::where('idCollection','=',$request->collectionId)->delete();
+            return redirect('/admin_approval')->with('status','Data collection berhasil dihapus!');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function adminSearchJob(Request $request)
+    {
+        $search = $request->keywordSearch;
+        $allJob =  Job::where('titleJob','like',"%".$search."%")->paginate(5);
+        return view('/admin_job',['job' => $allJob]);
+    }
+
+    public function adminSearchAccount(Request $request)
+    {
+        $search = $request->keywordSearch;
+        $allUser =  User::where('usernamePengguna','like',"%".$search."%")->paginate(5);
+        return view('/admin',['user' => $allUser]);
+    }
+
+    public function adminSearchCollection(Request $request)
+    {
+        $search = $request->keywordSearch;
+        $allCollection =  Collection::where('titleCollection','like',"%".$search."%")->paginate(5);
+        return view('/admin_collection',['collection' => $allCollection]);
+    }
+
+    public function adminSearchGallery(Request $request)
+    {
+        $search = $request->keywordSearch;
+        $allGallery =  Gallery::where('titleGallery','like',"%".$search."%")->paginate(5);
+        return view('/admin_gallery',['gallery' => $allGallery]);
+    }
+
+    public function adminApproval(Request $request)
+    {
+        if(Auth::user()->isAdmin == TRUE){
+            Collection::where('idCollection','=',$request->collectionId)->update(['approvalCollection' => TRUE]);
+            return redirect('/admin_approval')->with('status','Data collection berhasil diapprove!');
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function showMonetize()
+    {
+        $basicMonetize = 50000;
+        $countCollection = Collection::where('idPengguna', '=', Auth::user()->id)->where('approvalCollection', '=', TRUE)->where('draftStatusCollection', '=', FALSE)->count();
+        $subTotalMonetize = $basicMonetize*$countCollection;
+        $taxMonetize = (10/100)*$subTotalMonetize;
+        $totalMonetize = $subTotalMonetize + $taxMonetize;
+        return view('/monetize',['basicMonetize' => $basicMonetize, 'countCollection' => $countCollection, 'subTotalMonetize' => $subTotalMonetize, 'taxMonetize' => $taxMonetize, 'totalMonetize' => $totalMonetize]);
+    }
+
+    public function submitMonetize(Request $request)
+    {
+        $monetize = Monetize::create([
+            'idPengguna' => Auth::user()->id,
+            'monetizeAmount' => $request->amountMonetize,
+            'monetizeStatus' => FALSE,
+            ]);
+    }
+
     public function createUpdateProfileGeneral()
     {
         return view('/edit_profile_general');
@@ -122,8 +313,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect('/');
+        if(Auth::user()->isAdmin == TRUE){
+            return redirect('/admin');
+        } else {
+            return redirect('/');
+        }
     }
     
 
