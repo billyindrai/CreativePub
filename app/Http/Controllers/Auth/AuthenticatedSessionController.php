@@ -341,9 +341,15 @@ class AuthenticatedSessionController extends Controller
     public function updateProfilePassword(Request $request, User $user)
     {
         $request->validate([
-            'oldPassword' => ['required', Rules\Password::defaults()],
-            'newPassword' => ['required', Rules\Password::defaults(),'required_with:confirm_password|same:confirm_password'],
-            'confirmPassword' => ['required', Rules\Password::defaults()],
+            'oldPassword' => ['required', Rules\Password::defaults(),
+            function ($attribute, $value, $fail) {
+                if (!Hash::check($value, Auth::user()->password)) {
+                    $fail('Your password was not updated, since the provided current password does not match.');
+                }
+            }
+        ],
+            'newPassword' => ['required_with:confirmPassword',Rules\Password::defaults(),'same:confirmPassword'],
+            'confirmPassword' => [Rules\Password::defaults(),'required',],
         ]);
         
 
@@ -355,7 +361,6 @@ class AuthenticatedSessionController extends Controller
                 return redirect('/');
             }
         } else{
-            return view('/profile');
         }
     }
 

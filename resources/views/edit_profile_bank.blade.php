@@ -34,13 +34,15 @@
         <div class="container-2xl md:flex flex-1 gap-2 py-3 border-b border-amber-200">
             <img class="rounded-full object-cover float-left w-12 h-12" src="https://img.freepik.com/free-photo/mand-holding-cup_1258-340.jpg?size=626&ext=jpg&ga=GA1.2.1546389280.1639353600" alt="">
             <div class="contaienr-2xl gap-2">
-                <p class="font-sans text-xl font-bold text-white"> Tono / Bank Account</p>
+                <p class="font-sans text-xl font-bold text-white"> {{Auth::user()->name}} / Bank Account</p>
                 <p class="font-sans text-xs font-light text-white"> Update your bank account</p>
             </div>
         </div>
 
         <form method="POST" action="/edit_profile_bank" id="bankForm">
             @csrf
+            <input type="hidden" id="token" value="{{ @csrf_token() }}">
+
             <div class="container-2xl gap-3 py-1 w-full">
                     <p class="font-sans text-white font-medium">
                         Bank
@@ -59,7 +61,7 @@
                     <input name="bankNumber" id="bankNumber" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="1234567890" type="text">
             </div>
             <div class="container-2xl py-3">
-                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+                <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold">Save Changes</button>
             </div>
         </form>
 
@@ -82,7 +84,9 @@
                             Profile updated successfully!
                         </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="profileUpdateModal">Done</button>  
+                            <a href="/edit_profile_bank">
+                                <button  class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10">Done</button>  
+                            </a>
                         </div>
 
                   
@@ -91,6 +95,61 @@
             </div>
 </div>
 
+<script>
+    $(document).ready(function(){
+        $("#bankForm button").click(function(e){
+            if ($(this).attr("value") == "continue") {            
+                $("#bankForm").submit(function(e){
+                    e.preventDefault();
+                });
+                var formData = new FormData();
+                formData.append('bank', $('#bank').val());
+                formData.append('bankNumber', $('#bankNumber').val());
+               
+            } 
+
+          
+
+            // Don't use serialize here, as it is used when we want to send the data of entire form in a query string way and that will not work for file upload
+
+            $.ajax({
+                url: '/edit_profile_bank',
+                method: 'post',
+                data: formData,
+                contentType : false,
+                processData : false,
+                headers: {
+                    'X-CSRF-TOKEN': $("#token").val()
+                },
+                success: function(response){
+                    // Do what ever you want to do on sucsess
+                    
+                        const targetEl = document.getElementById('profileUpdateModal');
+                        const options = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
+                        }
+                        };
+                        const modal = new Modal(targetEl, options);
+                        modal.show();
+                        },
+                    error:function(response)
+                    {
+                    console.log(response);
+                    }
+            });
+        })
+    })
+</script>
 
 
 @endsection

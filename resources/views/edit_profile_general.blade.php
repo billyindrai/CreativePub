@@ -43,6 +43,7 @@
 
         <form  method="POST" action="/edit_profile_general" id="formUpdate">
             @csrf
+            <input type="hidden" id="token" value="{{ @csrf_token() }}">
             <div class="container-2xl gap-3 py-1 w-full">
                     <p class="font-sans text-white font-medium">
                         Username
@@ -91,7 +92,7 @@
                     <input id="penggunaQuotes" name="penggunaQuotes" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="{{Auth::user()->penggunaQuotes}}" type="text" required>
             </div>
             <div class="container-2xl py-3">
-                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+                <button id="button" name="button" value="continue" class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold">Save Changes</button>
             </div>
         </form>
 
@@ -114,7 +115,9 @@
                             Profile updated successfully!
                         </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="profileUpdateModal">Done</button>  
+                            <a href="/edit_profile">
+                                <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10">Done</button>  
+                            </a>
                         </div>
 
                   
@@ -123,6 +126,66 @@
             </div>
 </div>
 
+
+<script>
+    $(document).ready(function(){
+        $("#formUpdate button").click(function(e){
+            if ($(this).attr("value") == "continue") {            
+                $("#formUpdate").submit(function(e){
+                    e.preventDefault();
+                });
+                var formData = new FormData();
+                formData.append('usernamePengguna', $('#usernamePengguna').val());
+                formData.append('email', $('#email').val());
+                formData.append('name', $('#name').val());
+                formData.append('penggunaProfession', $('#penggunaProfession').val());
+                formData.append('penggunaLocation', $('#penggunaLocation').val());
+                formData.append('penggunaBio', $('#penggunaBio').val());
+                formData.append('penggunaQuotes', $('#penggunaQuotes').val());
+            } 
+
+          
+
+            // Don't use serialize here, as it is used when we want to send the data of entire form in a query string way and that will not work for file upload
+
+            $.ajax({
+                url: '/edit_profile_general',
+                method: 'post',
+                data: formData,
+                contentType : false,
+                processData : false,
+                headers: {
+                    'X-CSRF-TOKEN': $("#token").val()
+                },
+                success: function(response){
+                    // Do what ever you want to do on sucsess
+                    
+                        const targetEl = document.getElementById('profileUpdateModal');
+                        const options = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
+                        }
+                        };
+                        const modal = new Modal(targetEl, options);
+                        modal.show();
+                        },
+                    error:function(response)
+                    {
+                    console.log(response);
+                    }
+            });
+        })
+    })
+</script>
 
 
 @endsection

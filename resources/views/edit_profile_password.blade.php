@@ -41,8 +41,9 @@
             </div>
         </div>
 
-        <form method="POST" action="/edit_profile_password">
+        <form method="POST" action="/edit_profile_password" id="formPassword" >
             @csrf
+            <input type="hidden" id="token" value="{{ @csrf_token() }}">
             <div class="container-2xl gap-3 py-1 w-full">
                     <p class="font-sans text-white font-medium">
                         Old Password
@@ -65,8 +66,25 @@
                     </p>
                     <input id="confirmPassword" name="confirmPassword" class=" bg-white rounded-lg w-full h-10 mt-2" placeholder="" type="password" required>
             </div>
+            <div id="error" class="container-2xl md:flex flex-1 mt-4 justify-center" role="alert">
+                @if ($errors->has('confirmPassword'))
+                <div class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <span class="font-medium">{{ $errors->first('confirmPassword') }}</span> 
+                </div>
+                @endif 
+                @if ($errors->has('newPassword'))
+                <div class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <span class="font-medium">{{ $errors->first('newPassword') }}</span> 
+                </div>
+                @endif    
+                @if ($errors->has('oldPassword'))
+                <div class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <span class="font-medium">{{ $errors->first('oldPassword') }}</span> 
+                </div>
+                @endif  
+            </div>
             <div class="container-2xl py-3">
-                <button class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold" data-modal-toggle="profileUpdateModal">Save Changes</button>
+                <button id="button" name="button" value="continue"  class="bg-register_orange rounded-lg w-full h-10 text-white text-base font-bold">Save Changes</button>
             </div>
         </form>
 
@@ -89,7 +107,9 @@
                             Profile updated successfully!
                         </p>
                         <div class="container-2xl md:flex flex-1 justify-center">
-                            <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10" data-modal-toggle="profileUpdateModal">Done</button>  
+                            <a href="/edit_profile_password">
+                                <button class="bg-register_orange hover:bg-orange-700 w-28 text-white rounded-md p-2 text-base font-sans mt-10">Done</button>  
+                            </a>
                         </div>
 
                   
@@ -98,6 +118,62 @@
             </div>
 </div>
 
+<script>
+    $(document).ready(function(){
+        $("#formPassword button").click(function(e){
+            if ($(this).attr("value") == "continue") {            
+                $("#formPassword").submit(function(e){
+                    e.preventDefault();
+                });
+                var formData = new FormData();
+                formData.append('oldPassword', $('#oldPassword').val());
+                formData.append('newPassword', $('#newPassword').val());
+                formData.append('confirmPassword', $('#confirmPassword').val());
+            } 
 
+          
+
+            // Don't use serialize here, as it is used when we want to send the data of entire form in a query string way and that will not work for file upload
+
+            $.ajax({
+                url: '/edit_profile_password',
+                method: 'post',
+                data: formData,
+                contentType : false,
+                processData : false,
+                headers: {
+                    'X-CSRF-TOKEN': $("#token").val()
+                },
+                success: function(response){
+                    // Do what ever you want to do on sucsess
+                    
+                        const targetEl = document.getElementById('profileUpdateModal');
+                        const options = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
+                        }
+                        };
+                        const modal = new Modal(targetEl, options);
+                        modal.show();
+                        },
+                    error:function(response)
+                    {
+                    var errorMsg = '<span  class="p-4 my-2 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium">' + response.responseJSON.message+'</span>';
+                    $('#error').html(errorMsg); 
+                    console.log(response);
+                    }
+            });
+        })
+    })
+</script>
 
 @endsection
